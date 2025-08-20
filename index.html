@@ -1,253 +1,306 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anubis A.I. – Agencia de IA</title>
   <style>
-    :root {
-      --primary: #000;        /* negro para títulos y botones principales */
-      --secondary: #777;      /* gris para subtítulos */
-      --accent: #f2f2f2;      /* gris claro para fondos y botones secundarios */
-      --background: #fff;     /* blanco para fondo de la página */
-      font-family: "Helvetica Neue", Arial, sans-serif;
+    :root{
+      --primary:#000;      /* negro para títulos y botones */
+      --secondary:#777;    /* gris para subtítulos */
+      --accent:#f2f2f2;    /* gris claro para fondos suaves */
+      --background:#fff;   /* fondo blanco */
+      font-family:"Helvetica Neue", Arial, sans-serif;
     }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--background); color: var(--primary); }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--background);color:var(--primary)}
 
     /* Header */
-    header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95);
-             border-bottom: 1px solid #eee; display: flex; justify-content: space-between;
-             align-items: center; padding: 1rem 2rem; }
-    header img { height: 40px; margin-right: 1rem; }
-    nav a { margin-left: 1.5rem; text-decoration: none; color: var(--primary); font-weight: bold; }
-    nav a:hover { color: var(--secondary); }
+    header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(255,255,255,.95);
+      border-bottom:1px solid #eee;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem
+    }
+    header img{height:40px}
+    nav a{
+      margin-left:1.5rem;text-decoration:none;color:var(--primary);font-weight:bold
+    }
+    nav a:hover{color:var(--secondary)}
 
     /* Hero */
-    .hero { padding: 5rem 1rem; text-align: center; }
-    .hero img { height: 80px; margin-bottom: 1rem; }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--primary); }
-    .hero p { font-size: 1.25rem; color: var(--secondary); margin-bottom: 2rem; }
-    .buttons a { display: inline-block; padding: 0.8rem 1.5rem; border-radius: 30px;
-                 margin: 0 0.5rem; font-weight: bold; text-decoration: none; }
-    .buttons a.primary { background: var(--primary); color: var(--background); }
-    .buttons a.secondary { background: var(--accent); color: var(--primary); }
+    .hero{padding:5rem 1rem;text-align:center}
+    .hero img{height:80px;margin-bottom:1rem}
+    .hero h1{font-size:2.5rem;margin-bottom:.5rem}
+    .hero p{font-size:1.25rem;color:var(--secondary);margin-bottom:2rem}
+    .buttons a{
+      display:inline-block;padding:.8rem 1.5rem;border-radius:30px;
+      margin:0 .5rem;font-weight:bold;text-decoration:none
+    }
+    .buttons a.primary{background:var(--primary);color:var(--background)}
+    .buttons a.secondary{background:var(--accent);color:var(--primary)}
 
-    /* Secciones generales */
-    section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
-    h2 { text-align: center; margin-bottom: 2rem; color: var(--primary); }
-    p.section-text { text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--secondary); }
+    /* Secciones */
+    section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
+    h2{text-align:center;margin-bottom:2rem}
+    p.section-text{max-width:800px;margin:0 auto 2rem;text-align:center;color:var(--secondary)}
 
-    /* Sectores */
-    .sectores-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; }
-    .sector { text-align: center; }
-    .sector img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; }
-    .sector h3 { margin: 0.5rem 0; color: var(--primary); }
+    /* Servicios (SIN imágenes) */
+    .servicios-grid{
+      display:grid;gap:1.5rem;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr))
+    }
+    .serv-card{
+      border:1px solid #eee;border-radius:10px;padding:1.25rem;background:#fff
+    }
+    .serv-card h3{margin:.25rem 0 .5rem}
+    .serv-card p{color:#444;margin:0}
+    .serv-card ul{margin:.5rem 0 0 1.1rem;color:#555}
+
+    /* Sectores (con imágenes CUADRADAS y simétricas) */
+    .sectores-grid{
+      display:grid;gap:1.5rem;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      align-items:stretch
+    }
+    .sector{
+      background:#fff;border:1px solid #eee;border-radius:12px;
+      padding:0;overflow:hidden;display:flex;flex-direction:column
+    }
+    .sector .thumb{
+      width:100%;aspect-ratio:1/1;     /* SIEMPRE CUADRADA */
+      overflow:hidden;background:#fafafa
+    }
+    .sector .thumb img{
+      width:100%;height:100%;object-fit:cover;display:block
+    }
+    .sector h3{
+      margin:0;padding:1rem;text-align:center;font-size:1.05rem
+    }
 
     /* Proceso */
-    .proceso-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; }
-    .paso { text-align: center; padding: 1rem; border: 1px solid #eee; border-radius: 8px; }
-    .paso span { display: inline-block; background: var(--primary); color: var(--background);
-                 border-radius: 50%; width: 40px; height: 40px; line-height: 40px; margin-bottom: 0.5rem; }
+    .proceso-grid{
+      display:grid;gap:1.5rem;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr))
+    }
+    .paso{
+      text-align:center;padding:1.25rem;border:1px solid #eee;border-radius:10px;background:#fff
+    }
+    .paso span{
+      display:inline-block;background:var(--primary);color:#fff;width:40px;height:40px;
+      line-height:40px;border-radius:50%;margin-bottom:.5rem;font-weight:bold
+    }
 
     /* FAQ */
-    details { max-width: 700px; margin: 1rem auto; border: 1px solid #eee; border-radius: 8px; padding: 1rem; }
-    summary { cursor: pointer; font-weight: bold; color: var(--primary); }
-    details p { margin-top: 0.5rem; color: var(--secondary); }
+    details{
+      max-width:700px;margin:1rem auto;border:1px solid #eee;border-radius:10px;padding:1rem;background:#fff
+    }
+    summary{cursor:pointer;font-weight:bold}
 
-    /* Formulario de contacto */
-    form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-    form input, form textarea { padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;
-                                font-size: 1rem; color: var(--primary); background: var(--accent); }
-    form button { padding: 1rem; border: none; background: var(--primary);
-                  color: var(--background); font-weight: bold; border-radius: 30px; cursor: pointer; }
-    form button:hover { background: #333; }
+    /* Formulario */
+    form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem}
+    input,textarea{
+      padding:.85rem;border:1px solid #ddd;border-radius:8px;background:#fafafa;font-size:1rem;color:#111
+    }
+    button{
+      padding:1rem;border:none;border-radius:30px;background:var(--primary);color:#fff;font-weight:bold;cursor:pointer
+    }
+    button:hover{background:#222}
 
     /* Footer */
-    footer { background: #fafafa; padding: 2rem; border-top: 1px solid #eee;
-             display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; }
-    footer div { flex: 1 1 200px; }
-    footer h3 { margin-bottom: 0.5rem; color: var(--primary); }
-    footer a { display: block; margin-bottom: 0.25rem; color: var(--secondary); text-decoration: none; }
-    footer a:hover { color: var(--primary); }
+    footer{
+      background:#fafafa;padding:2rem;border-top:1px solid #eee;
+      display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between
+    }
+    footer div{flex:1 1 200px}
+    footer h3{margin:.25rem 0 .75rem}
+    footer a{display:block;margin-bottom:.25rem;color:#555;text-decoration:none}
+    footer a:hover{color:#000}
 
     /* Responsive */
-    @media (max-width: 768px) {
-      nav a { margin-left: 0.75rem; font-size: 0.9rem; }
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
+    @media(max-width:768px){
+      nav a{margin-left:.9rem;font-size:.95rem}
+      .hero h1{font-size:2rem}
+      .hero p{font-size:1rem}
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">
-    <img src="logo.png" alt="Anubis A.I.">
-  </div>
+  <img src="logo.png" alt="Anubis A.I.">
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#quienes">Quiénes somos</a>
+    <a href="#servicios">Servicios</a>
     <a href="#sectores">Sectores</a>
     <a href="#proceso">Proceso</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
-<!-- Banner principal -->
+<!-- HERO -->
 <section id="inicio" class="hero">
   <img src="logo.png" alt="Anubis A.I.">
   <h1>Anubis A.I.</h1>
   <p>Potencia tu negocio con inteligencia artificial de vanguardia</p>
   <div class="buttons">
-    <a href="#sectores" class="primary">Descubre nuestros servicios</a>
+    <a href="#servicios" class="primary">Descubre nuestros servicios</a>
     <a href="#contacto" class="secondary">Solicita demo</a>
   </div>
 </section>
 
-<!-- Quiénes somos -->
+<!-- QUIÉNES SOMOS -->
 <section id="quienes">
   <h2>Quiénes somos</h2>
-  <p class="section-text">Somos una agencia especializada en inteligencia artificial. Ayudamos a empresas de todos los sectores a mejorar sus procesos mediante soluciones de IA personalizadas y eficientes.</p>
+  <p class="section-text">
+    Somos una agencia especializada en inteligencia artificial. Ayudamos a empresas de todos los sectores a mejorar sus procesos mediante soluciones de IA personalizadas, medibles y escalables.
+  </p>
 </section>
 
-<!-- Servicios -->
-  <section id="servicios">
+<!-- SERVICIOS (sin imágenes) -->
+<section id="servicios">
   <h2>Servicios</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="icons/automacion.png" alt="Automatización de procesos" style="height:60px;width:60px;margin-bottom:0.5rem;">
+  <div class="servicios-grid">
+    <div class="serv-card">
       <h3>Automatización de procesos</h3>
-      <p>Optimiza tareas repetitivas y reduce costes operativos con inteligencia artificial.</p>
+      <p>Digitalizamos tareas repetitivas (citas, recordatorios, seguimiento de leads, inventario) para liberar tiempo del equipo y reducir errores. Integramos tus herramientas actuales mediante APIs para que todo funcione de forma coordinada.</p>
+      <ul>
+        <li>Flujos automáticos de punta a punta.</li>
+        <li>Alertas y reportes en tiempo real.</li>
+        <li>Integración con CRM/ERP y calendarios.</li>
+      </ul>
     </div>
-    <div class="card">
-      <img src="icons/atencion.png" alt="Atención al cliente 24/7" style="height:60px;width:60px;margin-bottom:0.5rem;">
+
+    <div class="serv-card">
       <h3>Atención al cliente 24/7</h3>
-      <p>Chatbots y asistentes virtuales para ofrecer soporte continuo y personalizado.</p>
+      <p>Agentes conversacionales que resuelven dudas, toman reservas y escalan a un humano cuando es necesario. Entrenamos el bot con tu base de conocimiento para que responda de forma precisa y con tu tono de marca.</p>
+      <ul>
+        <li>Chat, WhatsApp y web en un único asistente.</li>
+        <li>Handoff fluido a tu equipo.</li>
+        <li>Métricas de satisfacción y tiempos de respuesta.</li>
+      </ul>
     </div>
-    <div class="card">
-      <img src="icons/analisis.png" alt="Análisis de datos" style="height:60px;width:60px;margin-bottom:0.5rem;">
+
+    <div class="serv-card">
       <h3>Análisis de datos</h3>
-      <p>Toma decisiones informadas mediante algoritmos que identifican patrones y oportunidades.</p>
+      <p>Paneles y modelos de IA para detectar patrones, prever demanda y medir conversiones. Transformamos tus datos en decisiones accionables que impactan directamente en ventas y eficiencia.</p>
+      <ul>
+        <li>Dashboards ejecutivos y alertas inteligentes.</li>
+        <li>Predicción de demanda y segmentación.</li>
+        <li>KPIs y experimentación continua.</li>
+      </ul>
     </div>
-    <div class="card">
-      <img src="icons/generativa.png" alt="IA Generativa" style="height:60px;width:60px;margin-bottom:0.5rem;">
+
+    <div class="serv-card">
       <h3>IA Generativa</h3>
-      <p>Generación automatizada de contenido y recomendaciones adaptadas a tus clientes.</p>
+      <p>Generación de copys, emails y contenidos personalizados a escala. Sistemas que proponen mensajes y creatividades acordes al contexto para acelerar campañas y mejorar la conversión.</p>
+      <ul>
+        <li>Plantillas personalizadas por sector.</li>
+        <li>A/B testing automatizado.</li>
+        <li>Control de tono y aprobación humana.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-
-<!-- Sectores (con imágenes) -->
+<!-- SECTORES (imágenes cuadradas y simétricas) -->
 <section id="sectores">
   <h2>Sectores</h2>
-  <p class="section-text">Conoce algunos de los muchos sectores donde ya implementamos agentes IA:</p>
+  <p class="section-text">Conoce algunos de los sectores donde implementamos agentes IA:</p>
+
   <div class="sectores-grid">
     <div class="sector">
-      <img src="botbarber.png" alt="Barberías">
+      <div class="thumb"><img src="botbarber.png" alt="Barberías"></div>
       <h3>Barberías</h3>
     </div>
+
     <div class="sector">
-      <img src="botdentista.png" alt="Dentistas">
+      <div class="thumb"><img src="botdentista.png" alt="Dentistas"></div>
       <h3>Dentistas</h3>
     </div>
+
     <div class="sector">
-      <img src="botrestaurante.png" alt="Restaurantes">
+      <div class="thumb"><img src="botrestaurante.png" alt="Restaurantes"></div>
       <h3>Restaurantes</h3>
     </div>
+
     <div class="sector">
-      <img src="botmoda.png" alt="Moda">
+      <div class="thumb"><img src="botmoda.png" alt="Tiendas de moda"></div>
       <h3>Tiendas de moda</h3>
     </div>
+
     <div class="sector">
-      <img src="botfisio.png" alt="Fisioterapia">
+      <div class="thumb"><img src="botfisio.png" alt="Clínicas de fisioterapia"></div>
       <h3>Clínicas de fisioterapia</h3>
     </div>
+
     <div class="sector">
-      <img src="botinmobiliaria.png" alt="Inmobiliarias">
+      <div class="thumb"><img src="botinmobiliaria.png" alt="Inmobiliarias y Real Estate"></div>
       <h3>Inmobiliarias y Real Estate</h3>
     </div>
+
     <div class="sector">
-      <img src="botlogistica.png" alt="Logística">
+      <div class="thumb"><img src="botlogistica.png" alt="Logística"></div>
       <h3>Logística</h3>
     </div>
   </div>
 </section>
 
-<!-- Proceso -->
+<!-- PROCESO -->
 <section id="proceso">
   <h2>Cómo trabajamos</h2>
   <div class="proceso-grid">
-    <div class="paso">
-      <span>1</span>
-      <h3>Diagnóstico</h3>
-      <p>Analizamos tu negocio y necesidades específicas.</p>
-    </div>
-    <div class="paso">
-      <span>2</span>
-      <h3>Implementación</h3>
-      <p>Desarrollamos e integrámos tu solución de IA.</p>
-    </div>
-    <div class="paso">
-      <span>3</span>
-      <h3>Optimización</h3>
-      <p>Monitorizamos y ajustamos para maximizar resultados.</p>
-    </div>
-    <div class="paso">
-      <span>4</span>
-      <h3>Escalabilidad</h3>
-      <p>Crecemos contigo con planes flexibles de bots.</p>
-    </div>
+    <div class="paso"><span>1</span><h3>Diagnóstico</h3><p>Analizamos tu negocio y necesidades específicas.</p></div>
+    <div class="paso"><span>2</span><h3>Implementación</h3><p>Desarrollamos e integramos tu solución de IA.</p></div>
+    <div class="paso"><span>3</span><h3>Optimización</h3><p>Monitorizamos y ajustamos para maximizar resultados.</p></div>
+    <div class="paso"><span>4</span><h3>Escalabilidad</h3><p>Crecemos contigo con planes flexibles de bots.</p></div>
   </div>
 </section>
 
-<!-- Preguntas frecuentes -->
+<!-- FAQ -->
 <section id="faq">
   <h2>Preguntas frecuentes</h2>
   <details>
     <summary>¿Cómo se integra Anubis A.I. con mis sistemas?</summary>
-    <p>Nuestras soluciones se adaptan mediante APIs y conectores personalizados para integrarse sin problemas con tus herramientas actuales.</p>
+    <p>Nuestras soluciones se adaptan mediante APIs y conectores personalizados para integrarse con tus herramientas actuales.</p>
   </details>
   <details>
     <summary>¿Cuánto tiempo tarda la implementación?</summary>
-    <p>Depende de la complejidad de tu proyecto, pero normalmente en pocas semanas podrás tener tu asistente IA funcionando.</p>
+    <p>Según complejidad: en la mayoría de casos, el MVP está listo en pocas semanas.</p>
   </details>
   <details>
     <summary>¿Cuál es el modelo de precios?</summary>
-    <p>Ofrecemos un proceso inicial de implementación personalizado y después una cuota mensual flexible con planes de bots mejorados, adaptados a tus necesidades.</p>
+    <p>Incluye un proceso inicial de implementación y una cuota mensual flexible con planes de bots mejorados.</p>
   </details>
 </section>
 
-<!-- Contacto -->
+<!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
-  <p class="section-text">
-    ¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.
-  </p>
-  <form action="https://formsubmit.co/anubis.ai.agency@gmail.com" method="POST">
-    <!-- Redirige a la página de agradecimiento tras enviar -->
-    <input type="hidden" name="_next" value="gracias.html">
-    <!-- Desactiva el captcha de FormSubmit -->
-    <input type="hidden" name="_captcha" value="false">
-    <!-- Personaliza el asunto del email que recibirás -->
-    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
+  <p class="section-text">¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.</p>
 
-    <!-- Campos del usuario -->
-    <input type="text" name="Nombre" placeholder="Nombre" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <input type="text" name="Empresa" placeholder="Empresa">
+  <form action="https://formsubmit.co/anubis.ai.agency@gmail.com" method="POST">
+    <input type="hidden" name="_next" value="gracias.html"/>
+    <input type="hidden" name="_captcha" value="false"/>
+    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web"/>
+
+    <input type="text"   name="Nombre"   placeholder="Nombre"  required />
+    <input type="email"  name="Email"    placeholder="Email"   required />
+    <input type="text"   name="Empresa"  placeholder="Empresa" />
     <textarea name="Mensaje" rows="4" placeholder="Mensaje" required></textarea>
     <button type="submit">Enviar</button>
   </form>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
   <div>
     <h3>Anubis A.I.</h3>
     <a href="#inicio">Inicio</a>
     <a href="#quienes">Quiénes somos</a>
+    <a href="#servicios">Servicios</a>
     <a href="#sectores">Sectores</a>
     <a href="#proceso">Proceso</a>
     <a href="#contacto">Contacto</a>
@@ -260,11 +313,10 @@
   </div>
   <div>
     <h3>Social</h3>
-    <a href="contacto-social.html">WhatsApp</a>
-    <a href="contacto-social.html">Email</a>
+    <a href="https://wa.me/34602382912" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:anubis.ai.agency@gmail.com">Email</a>
   </div>
 </footer>
 
 </body>
 </html>
-
