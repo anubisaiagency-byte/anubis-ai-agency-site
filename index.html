@@ -111,45 +111,65 @@
   <p class="section-text">Somos una agencia especializada en inteligencia artificial. Ayudamos a empresas de todos los sectores a mejorar sus procesos mediante soluciones de IA personalizadas y eficientes.</p>
 </section>
 
+<!-- Servicios -->
+  <section id="servicios">
+  <h2>Servicios</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="icons/automacion.png" alt="Automatización de procesos" style="height:60px;width:60px;margin-bottom:0.5rem;">
+      <h3>Automatización de procesos</h3>
+      <p>Optimiza tareas repetitivas y reduce costes operativos con inteligencia artificial.</p>
+    </div>
+    <div class="card">
+      <img src="icons/atencion.png" alt="Atención al cliente 24/7" style="height:60px;width:60px;margin-bottom:0.5rem;">
+      <h3>Atención al cliente 24/7</h3>
+      <p>Chatbots y asistentes virtuales para ofrecer soporte continuo y personalizado.</p>
+    </div>
+    <div class="card">
+      <img src="icons/analisis.png" alt="Análisis de datos" style="height:60px;width:60px;margin-bottom:0.5rem;">
+      <h3>Análisis de datos</h3>
+      <p>Toma decisiones informadas mediante algoritmos que identifican patrones y oportunidades.</p>
+    </div>
+    <div class="card">
+      <img src="icons/generativa.png" alt="IA Generativa" style="height:60px;width:60px;margin-bottom:0.5rem;">
+      <h3>IA Generativa</h3>
+      <p>Generación automatizada de contenido y recomendaciones adaptadas a tus clientes.</p>
+    </div>
+  </div>
+</section>
+
+
 <!-- Sectores (con imágenes) -->
 <section id="sectores">
   <h2>Sectores</h2>
-  <p class="section-text">Conoce los sectores donde implementamos agentes IA:</p>
+  <p class="section-text">Conoce algunos de los muchos sectores donde ya implementamos agentes IA:</p>
   <div class="sectores-grid">
     <div class="sector">
-      <img src="imagenes/barberias.jpg" alt="Barberías">
+      <img src="botbarber.png" alt="Barberías">
       <h3>Barberías</h3>
     </div>
     <div class="sector">
-      <img src="imagenes/estetica.jpg" alt="Estética">
-      <h3>Estética</h3>
-    </div>
-    <div class="sector">
-      <img src="imagenes/dentistas.jpg" alt="Dentistas">
+      <img src="botdentista.png" alt="Dentistas">
       <h3>Dentistas</h3>
     </div>
     <div class="sector">
-      <img src="imagenes/restaurantes.jpg" alt="Restaurantes">
+      <img src="botrestaurante.png" alt="Restaurantes">
       <h3>Restaurantes</h3>
     </div>
     <div class="sector">
-      <img src="imagenes/gimnasios.jpg" alt="Gimnasios">
-      <h3>Gimnasios</h3>
+      <img src="botmoda.png" alt="Moda">
+      <h3>Tiendas de moda</h3>
     </div>
     <div class="sector">
-      <img src="imagenes/moda.jpg" alt="Moda">
-      <h3>Moda</h3>
+      <img src="botfisio.png" alt="Fisioterapia">
+      <h3>Clínicas de fisioterapia</h3>
     </div>
     <div class="sector">
-      <img src="imagenes/fisioterapia.jpg" alt="Fisioterapia">
-      <h3>Fisioterapia</h3>
+      <img src="botinmobiliaria.png" alt="Inmobiliarias">
+      <h3>Inmobiliarias y Real Estate</h3>
     </div>
     <div class="sector">
-      <img src="imagenes/inmobiliarias.jpg" alt="Inmobiliarias">
-      <h3>Inmobiliarias</h3>
-    </div>
-    <div class="sector">
-      <img src="imagenes/logistica.jpg" alt="Logística">
+      <img src="botlogistica.png" alt="Logística">
       <h3>Logística</h3>
     </div>
   </div>
@@ -202,8 +222,18 @@
 <!-- Contacto -->
 <section id="contacto">
   <h2>Contacto</h2>
-  <p class="section-text">¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.</p>
-  <form action="mailto:anubis.ai.agency@gmail.com" method="POST" enctype="text/plain" onsubmit="window.location.href='gracias.html';">
+  <p class="section-text">
+    ¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.
+  </p>
+  <form action="https://formsubmit.co/anubis.ai.agency@gmail.com" method="POST">
+    <!-- Redirige a la página de agradecimiento tras enviar -->
+    <input type="hidden" name="_next" value="gracias.html">
+    <!-- Desactiva el captcha de FormSubmit -->
+    <input type="hidden" name="_captcha" value="false">
+    <!-- Personaliza el asunto del email que recibirás -->
+    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
+
+    <!-- Campos del usuario -->
     <input type="text" name="Nombre" placeholder="Nombre" required>
     <input type="email" name="Email" placeholder="Email" required>
     <input type="text" name="Empresa" placeholder="Empresa">
