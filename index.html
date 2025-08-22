@@ -273,24 +273,32 @@
   </details>
 </section>
 
-<!-- CONTACTO -->
+<!-- Contacto -->
 <section id="contacto">
   <h2>Contacto</h2>
-  <p class="section-text">¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.</p>
+  <p class="section-text">
+    ¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.
+  </p>
 
   <form action="https://formsubmit.co/anubis.ai.agency@gmail.com" method="POST">
-    <input type="hidden" name="_next" value="gracias.html"/>
-    <input type="hidden" name="_captcha" value="false"/>
-    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web"/>
+    <!-- Redirige a la página de agradecimiento tras enviar -->
+    <input type="hidden" name="_next" value="https://anubisaiagency.com/gracias.html">
+    <!-- Desactiva el captcha de FormSubmit -->
+    <input type="hidden" name="_captcha" value="false">
+    <!-- Plantilla bonita en el email -->
+    <input type="hidden" name="_template" value="table">
+    <!-- Personaliza el asunto -->
+    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
 
-    <input type="text"   name="Nombre"   placeholder="Nombre"  required />
-    <input type="email"  name="Email"    placeholder="Email"   required />
-    <input type="text"   name="Empresa"  placeholder="Empresa" />
+    <!-- Campos -->
+    <input type="text" name="Nombre" placeholder="Nombre" required>
+    <input type="email" name="Email" placeholder="Email" required>
+    <input type="text" name="Empresa" placeholder="Empresa">
     <textarea name="Mensaje" rows="4" placeholder="Mensaje" required></textarea>
+
     <button type="submit">Enviar</button>
   </form>
 </section>
-
 <!-- FOOTER -->
 <footer>
   <div>
