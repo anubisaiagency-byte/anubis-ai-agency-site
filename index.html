@@ -29,50 +29,24 @@
     }
     nav a:hover{color:var(--secondary)}
 
-  /* Hero */
-.hero { 
-  padding: 5rem 1rem; 
-  text-align: center; 
-}
-.hero img { 
-  height: 120px; /* Aumentado de 80px a 120px */
-  margin-bottom: 1rem; 
-}
-.hero h1 { 
-  font-size: 2.8rem; /* un pelín más grande que antes */
-  margin-bottom: 0.5rem; 
-  color: var(--primary); 
-}
-.hero p { 
-  font-size: 1.25rem; 
-  color: var(--secondary); 
-  margin-bottom: 2rem; 
-  font-weight: 600; /* Más grueso */
-}
-.buttons a {
-  display: inline-block; 
-  padding: 0.8rem 1.5rem; 
-  border-radius: 30px;
-  margin: 0 0.5rem; 
-  font-weight: bold; 
-  text-decoration: none;
-}
-.buttons a.primary { 
-  background: var(--primary); 
-  color: var(--background); 
-}
-.buttons a.secondary { 
-  background: var(--accent); 
-  color: var(--primary); 
-}
+    /* Hero */
+    .hero{padding:5rem 1rem;text-align:center}
+    .hero img{height:120px;margin-bottom:1rem}
+    .hero h1{font-size:2.8rem;margin-bottom:.5rem;color:var(--primary)}
+    .hero p{font-size:1.25rem;color:var(--secondary);margin-bottom:2rem;font-weight:600}
+    .buttons a{
+      display:inline-block;padding:.8rem 1.5rem;border-radius:30px;
+      margin:0 .5rem;font-weight:bold;text-decoration:none
+    }
+    .buttons a.primary{background:var(--primary);color:var(--background)}
+    .buttons a.secondary{background:var(--accent);color:var(--primary)}
 
-
-    /* Secciones */
+    /* Secciones generales */
     section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
-    h2{text-align:center;margin-bottom:2rem}
+    h2{text-align:center;margin-bottom:2rem;color:var(--primary)}
     p.section-text{max-width:800px;margin:0 auto 2rem;text-align:center;color:var(--secondary)}
 
-    /* Servicios (SIN imágenes) */
+    /* Tarjetas de servicios y beneficios */
     .servicios-grid{
       display:grid;gap:1.5rem;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr))
@@ -82,9 +56,8 @@
     }
     .serv-card h3{margin:.25rem 0 .5rem}
     .serv-card p{color:#444;margin:0}
-    .serv-card ul{margin:.5rem 0 0 1.1rem;color:#555}
 
-    /* Sectores (con imágenes CUADRADAS y simétricas) */
+    /* Sectores */
     .sectores-grid{
       display:grid;gap:1.5rem;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -95,7 +68,7 @@
       padding:0;overflow:hidden;display:flex;flex-direction:column
     }
     .sector .thumb{
-      width:100%;aspect-ratio:1/1;     /* SIEMPRE CUADRADA */
+      width:100%;aspect-ratio:1/1;
       overflow:hidden;background:#fafafa
     }
     .sector .thumb img{
@@ -105,7 +78,7 @@
       margin:0;padding:1rem;text-align:center;font-size:1.05rem
     }
 
-    /* Proceso */
+    /* Proceso / Modo de actuar */
     .proceso-grid{
       display:grid;gap:1.5rem;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr))
@@ -122,7 +95,8 @@
     details{
       max-width:700px;margin:1rem auto;border:1px solid #eee;border-radius:10px;padding:1rem;background:#fff
     }
-    summary{cursor:pointer;font-weight:bold}
+    summary{cursor:pointer;font-weight:bold;color:var(--primary)}
+    details p{margin-top:.5rem;color:var(--secondary)}
 
     /* Formulario */
     form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem}
@@ -140,7 +114,7 @@
       display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between
     }
     footer div{flex:1 1 200px}
-    footer h3{margin:.25rem 0 .75rem}
+    footer h3{margin:.25rem 0 .75rem;color:var(--primary)}
     footer a{display:block;margin-bottom:.25rem;color:#555;text-decoration:none}
     footer a:hover{color:#000}
 
@@ -160,9 +134,13 @@
     <a href="#inicio">Inicio</a>
     <a href="#quienes">Quiénes somos</a>
     <a href="#servicios">Servicios</a>
+    <a href="#beneficios">Beneficios</a>
     <a href="#sectores">Sectores</a>
     <a href="#proceso">Proceso</a>
+    <a href="#casos">Casos de éxito</a>
+    <a href="#faq">Preguntas frecuentes</a>
     <a href="#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
   </nav>
 </header>
 
@@ -181,63 +159,78 @@
 <section id="quienes">
   <h2>Quiénes somos</h2>
   <p class="section-text">
-    Somos una agencia especializada en inteligencia artificial. Ayudamos a empresas de todos los sectores a mejorar sus procesos mediante soluciones de IA personalizadas, medibles y escalables.
+    Anubis AI Agency nace en Málaga, España, como una agencia dedicada a la automatización de procesos, desarrollo de agentes de inteligencia artificial y marketing digital.<br><br>
+    Nuestro propósito es ayudar a pequeñas, medianas y grandes empresas a optimizar su tiempo, reducir errores y maximizar sus beneficios a través de soluciones basadas en inteligencia artificial.<br><br>
+    Nuestra misión es democratizar el acceso a soluciones de IA adaptadas a cada cliente, ofreciendo un servicio cercano, profesional y enfocado en resultados tangibles.<br><br>
+    Nuestra visión es convertirnos en un referente en soluciones de automatización e inteligencia artificial en el mercado hispanohablante, acompañando a las empresas en su transformación digital.<br><br>
+    Valores fundamentales: Innovación, Transparencia, Escalabilidad y Atención Personalizada.
   </p>
 </section>
 
-<!-- SERVICIOS (sin imágenes) -->
+<!-- SERVICIOS -->
 <section id="servicios">
   <h2>Servicios</h2>
   <div class="servicios-grid">
     <div class="serv-card">
       <h3>Automatización de procesos</h3>
-      <p>Optimiza tareas repetitivas y ahorra tiempo con flujos inteligentes.</p>
+      <p>Implementamos sistemas inteligentes que permiten a tu negocio ahorrar tiempo y recursos en tareas repetitivas. Ejemplos: automatización de facturación, CRM, soporte al cliente, gestión de inventarios o envío de recordatorios.</p>
     </div>
-
     <div class="serv-card">
-      <h3>Atención al cliente 24/7</h3>
-      <p>Asistentes virtuales siempre disponibles para tus clientes.</p>
+      <h3>Agentes de inteligencia artificial</h3>
+      <p>Desarrollamos asistentes virtuales y chatbots adaptados a las necesidades de tu empresa. Casos de uso: atención al cliente en WhatsApp, soporte técnico automatizado, agentes para comercio electrónico y asistentes internos para equipos de trabajo.</p>
     </div>
-
     <div class="serv-card">
-      <h3>Análisis de datos</h3>
-      <p>Convierte tus datos en decisiones rápidas y efectivas.</p>
-    </div>
-
-    <div class="serv-card">
-      <h3>IA Generativa</h3>
-      <p>Contenido y recomendaciones personalizadas al instante.</p>
+      <h3>Marketing digital con IA</h3>
+      <p>Diseñamos estrategias de marketing basadas en inteligencia artificial para segmentar audiencias, personalizar mensajes y predecir comportamientos de clientes. Ejemplos: email marketing automatizado, campañas de publicidad dinámica y análisis predictivo de ventas.</p>
     </div>
   </div>
 </section>
 
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <h2>Beneficios de actuar con nosotros</h2>
+  <p class="section-text">Descubre las ventajas de implementar soluciones de IA en tu empresa:</p>
+  <div class="servicios-grid">
+    <div class="serv-card">
+      <h3>Ahorro de tiempo y reducción de errores</h3>
+      <p>Nuestras soluciones automatizan tareas repetitivas, minimizando fallos humanos y liberando a tu equipo para trabajos de mayor valor.</p>
+    </div>
+    <div class="serv-card">
+      <h3>Escalabilidad sin aumentar plantilla</h3>
+      <p>Las herramientas de IA permiten gestionar más trabajo y clientes sin incrementar costes de personal.</p>
+    </div>
+    <div class="serv-card">
+      <h3>Acompañamiento y soporte constante</h3>
+      <p>Ofrecemos atención personalizada y acompañamiento continuo durante y después de la implementación.</p>
+    </div>
+    <div class="serv-card">
+      <h3>Flexibilidad y adaptabilidad</h3>
+      <p>Nuestras soluciones se ajustan a tus sistemas y evolucionan contigo, permitiendo innovar y mejorar de forma progresiva.</p>
+    </div>
+  </div>
+</section>
 
-<!-- SECTORES (imágenes cuadradas y simétricas) -->
+<!-- SECTORES -->
 <section id="sectores">
   <h2>Sectores</h2>
-  <p class="section-text">Conoce algunos de los mejores sectores donde implementamos agentes IA:</p>
-
+  <p class="section-text">Conoce algunos de los sectores donde implementamos agentes IA:</p>
   <div class="sectores-grid">
     <div class="sector">
       <div class="thumb"><img src="botbarber.png" alt="Barberías"></div>
       <h3>Barberías</h3>
     </div>
-
     <div class="sector">
       <div class="thumb"><img src="botdentista.png" alt="Dentistas"></div>
       <h3>Dentistas</h3>
     </div>
-
     <div class="sector">
       <div class="thumb"><img src="botrestaurante.png" alt="Restaurantes"></div>
       <h3>Restaurantes</h3>
     </div>
-
     <div class="sector">
       <div class="thumb"><img src="botinmobiliaria.png" alt="Inmobiliarias y Real Estate"></div>
       <h3>Inmobiliarias y Real Estate</h3>
     </div>
-
     <div class="sector">
       <div class="thumb"><img src="botlogistica.png" alt="Logística"></div>
       <h3>Logística</h3>
@@ -249,10 +242,45 @@
 <section id="proceso">
   <h2>Cómo trabajamos</h2>
   <div class="proceso-grid">
-    <div class="paso"><span>1</span><h3>Diagnóstico</h3><p>Analizamos tu negocio y necesidades específicas.</p></div>
-    <div class="paso"><span>2</span><h3>Implementación</h3><p>Desarrollamos e integramos tu solución de IA.</p></div>
-    <div class="paso"><span>3</span><h3>Optimización</h3><p>Monitorizamos y ajustamos para maximizar resultados.</p></div>
-    <div class="paso"><span>4</span><h3>Escalabilidad</h3><p>Crecemos contigo con planes flexibles de bots.</p></div>
+    <div class="paso">
+      <span>1</span>
+      <h3>Diagnóstico</h3>
+      <p>Analizamos tu negocio y necesidades específicas.</p>
+    </div>
+    <div class="paso">
+      <span>2</span>
+      <h3>Implementación</h3>
+      <p>Desarrollamos e integramos tu solución de IA.</p>
+    </div>
+    <div class="paso">
+      <span>3</span>
+      <h3>Optimización</h3>
+      <p>Monitorizamos y ajustamos para maximizar resultados.</p>
+    </div>
+    <div class="paso">
+      <span>4</span>
+      <h3>Escalabilidad</h3>
+      <p>Crecemos contigo con planes flexibles de bots.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS DE ÉXITO -->
+<section id="casos">
+  <h2>Casos de éxito</h2>
+  <div class="servicios-grid">
+    <div class="serv-card">
+      <h3>Comercio minorista</h3>
+      <p>Implementamos un chatbot de WhatsApp que gestionó más de 500 consultas en un mes, aumentando la tasa de conversión en un 30%.</p>
+    </div>
+    <div class="serv-card">
+      <h3>Startup tecnológica</h3>
+      <p>Integramos APIs que redujeron en un 40% el tiempo de gestión de leads, mejorando la eficiencia del equipo.</p>
+    </div>
+    <div class="serv-card">
+      <h3>Restaurante</h3>
+      <p>Automatizamos reservas y diseñamos promociones personalizadas, logrando mayor fidelización y un incremento notable de las reservas.</p>
+    </div>
   </div>
 </section>
 
@@ -261,44 +289,51 @@
   <h2>Preguntas frecuentes</h2>
   <details>
     <summary>¿Cómo se integra Anubis A.I. con mis sistemas?</summary>
-    <p>Nuestras soluciones se adaptan mediante APIs y conectores personalizados para integrarse con tus herramientas actuales.</p>
+    <p>Nuestras soluciones se integran mediante APIs y conectores personalizados, garantizando seguridad y privacidad.</p>
   </details>
   <details>
     <summary>¿Cuánto tiempo tarda la implementación?</summary>
-    <p>Según complejidad: en la mayoría de casos, el MVP está listo en pocas semanas.</p>
+    <p>Depende de la complejidad del proyecto. Un chatbot sencillo puede estar listo en pocas semanas.</p>
   </details>
   <details>
     <summary>¿Cuál es el modelo de precios?</summary>
-    <p>Incluye un proceso inicial de implementación y una cuota mensual flexible con planes de bots mejorados.</p>
+    <p>El pago se divide en una fase de implementación personalizada y una cuota mensual flexible según el plan de IA elegido.</p>
+  </details>
+  <details>
+    <summary>¿Qué necesito para empezar?</summary>
+    <p>Lo primero es agendar una reunión de diagnóstico gratuita en la que analizamos tu negocio y definimos la mejor solución de IA.</p>
+  </details>
+  <details>
+    <summary>¿Qué soporte ofrecen tras la implementación?</summary>
+    <p>Ofrecemos soporte continuo que incluye mantenimiento, formación y mejoras adaptadas a la evolución de tu negocio.</p>
+  </details>
+  <details>
+    <summary>¿Se integran con mis sistemas (CRM/ERP)?</summary>
+    <p>Sí, nuestras soluciones se integran con CRMs, ERPs y plataformas como Zapier para asegurar un flujo de trabajo sin interrupciones.</p>
   </details>
 </section>
 
-<!-- Contacto -->
+<!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
   <p class="section-text">
     ¿Listo para impulsar tu negocio con IA? Rellena el formulario y contactaremos contigo a la mayor brevedad.
   </p>
-
   <form action="https://formsubmit.co/anubis.ai.agency@gmail.com" method="POST">
-    <!-- Redirige a la página de agradecimiento tras enviar -->
     <input type="hidden" name="_next" value="https://anubisaiagency.com/gracias.html">
-    <!-- Desactiva el captcha de FormSubmit -->
     <input type="hidden" name="_captcha" value="false">
-    <!-- Plantilla bonita en el email -->
     <input type="hidden" name="_template" value="table">
-    <!-- Personaliza el asunto -->
     <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
 
-    <!-- Campos -->
-    <input type="text" name="Nombre" placeholder="Nombre" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <input type="text" name="Empresa" placeholder="Empresa">
+    <input type="text"   name="Nombre"   placeholder="Nombre"  required>
+    <input type="email"  name="Email"    placeholder="Email"   required>
+    <input type="text"   name="Empresa"  placeholder="Empresa">
     <textarea name="Mensaje" rows="4" placeholder="Mensaje" required></textarea>
 
     <button type="submit">Enviar</button>
   </form>
 </section>
+
 <!-- FOOTER -->
 <footer>
   <div>
@@ -306,9 +341,13 @@
     <a href="#inicio">Inicio</a>
     <a href="#quienes">Quiénes somos</a>
     <a href="#servicios">Servicios</a>
+    <a href="#beneficios">Beneficios</a>
     <a href="#sectores">Sectores</a>
     <a href="#proceso">Proceso</a>
+    <a href="#casos">Casos de éxito</a>
+    <a href="#faq">Preguntas frecuentes</a>
     <a href="#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
   </div>
   <div>
     <h3>Legal</h3>
@@ -321,6 +360,11 @@
     <a href="https://wa.me/34694249575" target="_blank" rel="noopener">WhatsApp</a>
     <a href="mailto:anubis.ai.agency@gmail.com">Email</a>
   </div>
+  <p style="flex-basis:100%; margin-top:1rem;">
+    <small>Ubicación: Málaga, España (sin oficina física). 
+      Atención en español e inglés. 
+      Para más información, escríbenos a <a href="mailto:anubis.ai.agency@gmail.com">anubis.ai.agency@gmail.com</a> o solicita una videollamada.</small>
+  </p>
 </footer>
 
 </body>
