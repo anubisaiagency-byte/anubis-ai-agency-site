@@ -1,1 +1,11 @@
+[
+{
+"title": "Ejemplo de post",
+"slug": "ejemplo-de-post",
+"description": "Resumen corto (150-160 caracteres)",
+"date": "2025-08-28T10:00:00+02:00",
+"tags": ["IA", "Automatización"],
+"image": "/assets/blog/ejemplo-de-post/hero.jpg"
+}
+]
 
