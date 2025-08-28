@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} · Anubis A.I.</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="canonical" href="https://anubisaiagency.com/blog/{{slug}}.html">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{meta_description}}">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="{{hero_url}}">
+  <meta property="og:url" content="https://anubisaiagency.com/blog/
+  {{slug}}.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{title}}",
+  "description": "{{meta_description}}",
+  "image": "{{hero_url}}",
+  "datePublished": "{{iso_date}}",
+  "dateModified": "{{iso_date}}",
+  "author": { "@type": "Organization", "name": "Anubis A.I." },
+  "publisher": { "@type": "Organization", "name": "Anubis A.I." }
+  }
+  </script>
+  <link rel="stylesheet" href="/styles.css"><!-- Reutiliza tus estilos -->
+</head>
+<body>
+  <header><a href="/">Inicio</a> · <a href="/blog.html">Blog</a></header>
+  <main class="post">
+    <h1>{{title}}</h1>
+    <p class="post-meta">Publicado el {{date_human}}</p>
+     {{hero_img}}
+    <article class="content">
+     {{content_html}}
+    </article>
+    <hr>
+    <p>¿Quieres implementar esto en tu negocio? <a href="/contactosocial.html">Contáctanos</a>.</p>
+  </main>
+  <footer>© Anubis A.I.</footer>
+</body>
+</html>
