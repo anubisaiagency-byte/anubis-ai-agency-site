@@ -29,11 +29,6 @@ body.dark-theme{
   --border-color:rgba(255,255,255,0.15);
 }
 
-/* Invertir el logo en modo oscuro */
-body.dark-theme header img{
-  filter:invert(1);
-}
-
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--background);color:var(--primary)}
 
