@@ -379,3 +379,9 @@ body.dark-theme .paso span{
   color:var(--primary);
   border:1px solid var(--primary);
 }
+/* Mostrar solo el logo claro por defecto */
+.logo-dark { display: none; }
+
+/* En modo oscuro ocultamos el logo claro y mostramos el invertido */
+body.dark-theme .logo-light { display: none; }
+body.dark-theme .logo-dark  { display: block; }
