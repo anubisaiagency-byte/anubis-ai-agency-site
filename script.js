@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Al pulsar el botón se alterna la clase en el body y se guarda la preferencia
     themeToggle.addEventListener('click', () => {
       const isDark = document.body.classList.toggle('dark-theme');
-      themeToggle.textContent = isDark ? '☀' : '🌙';
+      themeToggle.textContent = isDark ? '🌞' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   }
