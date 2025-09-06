@@ -1,268 +1,371 @@
+/*
+ * Archivo de estilos principal para Anubis AI Agency.
+ *
+ * Esta hoja contiene todas las declaraciones CSS previamente
+ * incluidas dentro de la etiqueta <style> del archivo index.html.
+ * Separar el CSS en un archivo propio permite reutilizar estilos
+ * entre páginas, facilitar su mantenimiento y mantener el HTML
+ * más limpio. A medida que la web crezca, podrás dividir este
+ * fichero en secciones más pequeñas (por ejemplo, un CSS para
+ * componentes y otro para utilidades) o incluso aprovechar un
+ * preprocesador como Sass.
+ */
 
-    :root{
-      --primary:#000;      /* negro para títulos y botones */
-      --secondary:#777;    /* gris para subtítulos */
-      --accent:#f2f2f2;    /* gris claro para fondos suaves */
-      --background:#fff;   /* fondo blanco */
-      font-family:"Helvetica Neue", Arial, sans-serif;
-    }
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--background);color:var(--primary)}
+:root{
+  --primary:#000;      /* negro para títulos y botones */
+  --secondary:#777;    /* gris para subtítulos */
+  --accent:#f2f2f2;    /* gris claro para fondos suaves */
+  --background:#fff;   /* fondo base para páginas y tarjetas */
+  --border-color:#eee; /* color de borde por defecto */
+  font-family:"Helvetica Neue", Arial, sans-serif;
+}
 
-    /* Header */
-    header{
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.95);
-      border-bottom: 1px solid #eee;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-      display: flex;                 /* Distribuye horizontalmente */
-      justify-content: space-between;/* Separa logo y menú */
-      align-items: center;           /* Centra verticalmente */
-      padding: 1rem 2rem;            /* Añade margen interno */
-    }
+/* Tema oscuro: redefine las variables de color cuando se aplica la clase dark-theme en el body */
+body.dark-theme{
+  --primary:#fff;
+  --secondary:#aaa;
+  --accent:#1e1e1e;
+  --background:#121212;
+  --border-color:rgba(255,255,255,0.15);
+}
 
-    hr {
-      border: none;
-      border-top: 1px solid rgba(0,0,0,0.05);
-      margin: 4rem 0;
-    }
+/* Invertir el logo en modo oscuro */
+body.dark-theme header img{
+  filter:invert(1);
+}
 
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--background);color:var(--primary)}
 
-    header img{height:40px}
-    nav a{
-      margin-left:1.5rem;text-decoration:none;color:var(--primary);font-weight:bold
-    }
-    nav a:hover{color:var(--secondary)}
+/* Header */
+header{
+  /* Encabezado fijo con sombra suave para separarlo del contenido al hacer scroll */
+  position:sticky;
+  top:0;
+  z-index:100;
+  /* Utiliza el color de fondo base para el encabezado; en modo oscuro se redefine */
+  background:rgba(255,255,255,.95);
+  border-bottom:1px solid var(--border-color);
+  box-shadow:0 2px 4px rgba(0,0,0,0.04);
+  /* Mantener la distribución horizontal del logo y la navegación */
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+}
 
-    /* Hero */
-    .hero {
-      padding: 4rem 1rem;
-      text-align: center;
-      min-height: 80vh;        /* 80% de la altura de la ventana */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+/* Encabezado en modo oscuro: aplica un fondo oscuro translúcido y cambia el color del borde */
+body.dark-theme header{
+  background:rgba(18,18,18,.95);
+  border-bottom:1px solid var(--border-color);
+}
+header img{height:40px}
+nav a{
+  margin-left:1.5rem;text-decoration:none;color:var(--primary);font-weight:bold
+}
+nav a:hover{color:var(--secondary)}
 
-    .hero img{height:120px;margin-bottom:1rem}
-    .hero h1{font-size:2.8rem;margin-bottom:.5rem;color:var(--primary)}
-    .hero p{font-size:1.25rem;color:var(--secondary);margin-bottom:2rem;font-weight:600}
-    .buttons a {
-      display: inline-block;
-      padding: .8rem 1.5rem;
-      border-radius: 30px;
-      margin: 0 .5rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .buttons a.primary:hover {
-      background: #222;        /* un poco más claro que el negro original */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .buttons a.secondary:hover {
-      background: #e6e6e6;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+/* Separador entre secciones */
+hr{
+  border:none;
+  border-top:1px solid rgba(0,0,0,0.05);
+  margin:4rem 0;
+}
 
-    .buttons a.primary{background:var(--primary);color:var(--background)}
-    .buttons a.secondary{background:var(--accent);color:var(--primary)}
+/* Hero */
+.hero{
+  /* Ocupa casi toda la ventana para un hero más impactante */
+  padding:4rem 1rem;
+  min-height:80vh;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.hero img{height:120px;margin-bottom:1rem}
+.hero h1{font-size:2.8rem;margin-bottom:.5rem;color:var(--primary)}
+.hero p{font-size:1.25rem;color:var(--secondary);margin-bottom:2rem;font-weight:600}
+/* Botones con transiciones y micro-interacciones */
+.buttons a{
+  display:inline-block;
+  padding:.8rem 1.5rem;
+  border-radius:30px;
+  margin:0 .5rem;
+  font-weight:bold;
+  text-decoration:none;
+  transition:background-color .3s ease, box-shadow .3s ease;
+}
+.buttons a.primary{background:var(--primary);color:var(--background)}
+.buttons a.secondary{background:var(--accent);color:var(--primary)}
+/* Estados al pasar el ratón */
+.buttons a.primary:hover{
+  background:#222;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.buttons a.secondary:hover{
+  background:#e6e6e6;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
 
-    /* Secciones generales */
-    section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
-    h2{text-align:center;margin-bottom:2rem;color:var(--primary)}
-    p.section-text{max-width:800px;margin:0 auto 2rem;text-align:center;color:var(--secondary)}
+/* Secciones generales */
+section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
+h2{text-align:center;margin-bottom:2rem;color:var(--primary)}
+p.section-text{max-width:800px;margin:0 auto 2rem;text-align:center;color:var(--secondary)}
 
-    /* Tarjetas de servicios y beneficios */
-    .servicios-grid{
-      display:grid;gap:1.5rem;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr))
-    }
-    .serv-card {
-      border: 1px solid #eee;
-      border-radius: 10px;
-      padding: 1.25rem;
-      background: #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .serv-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+/* Animaciones para las líneas del texto en "Quiénes somos" */
+/* Cada línea se muestra una después de otra con un suave desplazamiento */
+#quienes .about-line{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+#quienes .about-line.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 
-    .serv-card h3{margin:.25rem 0 .5rem}
-    .serv-card p{color:#444;margin:0}
+/* Tarjetas de servicios y beneficios */
+.servicios-grid{
+  display:grid;gap:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr))
+}
+/* Tarjetas con efecto de elevación al pasar el ratón */
+.serv-card{
+  border:1px solid var(--border-color);
+  border-radius:10px;
+  padding:1.25rem;
+  /* Tarjetas utilizan el fondo base para respetar el tema */
+  background:var(--background);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.serv-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+/* Ajustar el color de los textos en las tarjetas según el tema */
+.serv-card p{
+  color:var(--secondary);
+  margin:0;
+}
 
-    /* Sectores */
-    .sectores-grid{
-      display:grid;gap:1.5rem;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      align-items:stretch
-    }
-    .sector{
-      background:#fff;border:1px solid #eee;border-radius:12px;
-      padding:0;overflow:hidden;display:flex;flex-direction:column
-    }
-    .sector .thumb{
-      width:100%;aspect-ratio:1/1;
-      overflow:hidden;background:#fafafa
-    }
-    .sector .thumb img{
-      width:100%;height:100%;object-fit:cover;display:block
-    }
-    .sector h3{
-      margin:0;padding:1rem;text-align:center;font-size:1.05rem
-    }
+/* Encabezados de tarjetas usan el color primario */
+.serv-card h3{
+  color:var(--primary);
+  margin:.25rem 0 .5rem;
+}
 
-    /* Proceso / Modo de actuar */
-    .proceso-grid{
-      display:grid;gap:1.5rem;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr))
-    }
-    .paso{
-      text-align:center;padding:1.25rem;border:1px solid #eee;border-radius:10px;background:#fff
-    }
-    .paso span{
-      display:inline-block;background:var(--primary);color:#fff;width:40px;height:40px;
-      line-height:40px;border-radius:50%;margin-bottom:.5rem;font-weight:bold
-    }
+/* Sectores */
+.sectores-grid{
+  display:grid;gap:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  align-items:stretch
+}
+.sector{
+  /* Tarjetas de sector: fondo y borde configurables según el tema */
+  background:var(--background);
+  border:1px solid var(--border-color);
+  border-radius:12px;
+  padding:0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  /* Preparar animación de entrada */
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .6s ease, transform .6s ease;
+}
 
-    /* FAQ */
-    details{
-      max-width:700px;margin:1rem auto;border:1px solid #eee;border-radius:10px;padding:1rem;background:#fff
-    }
-    summary{cursor:pointer;font-weight:bold;color:var(--primary)}
-    details p{margin-top:.5rem;color:var(--secondary)}
+/* Estado visible para los sectores cuando entren en la pantalla */
+.sector.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 
-    /* Formulario */
-    form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem}
-    input,textarea{
-      padding:.85rem;border:1px solid #ddd;border-radius:8px;background:#fafafa;font-size:1rem;color:#111
-    }
-    button{
-      padding:1rem;border:none;border-radius:30px;background:var(--primary);color:#fff;font-weight:bold;cursor:pointer
-    }
-    button:hover{background:#222}
+/* Efecto al pasar el ratón por encima de cada sector */
+.sector:hover{
+  transform:translateY(-5px) scale(1.03);
+  box-shadow:0 8px 16px rgba(0,0,0,0.1);
+}
+.sector .thumb{
+  width:100%;aspect-ratio:1/1;
+  overflow:hidden;background:#fafafa
+}
+.sector .thumb img{
+  width:100%;height:100%;object-fit:cover;display:block
+}
+.sector h3{
+  margin:0;
+  padding:1rem;
+  text-align:center;
+  font-size:1.05rem;
+  color:var(--primary);
+}
 
-    /* Footer */
-    footer{
-      background:#fafafa;padding:2rem;border-top:1px solid #eee;
-      display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between
-    }
-    footer div{flex:1 1 200px}
-    footer h3{margin:.25rem 0 .75rem;color:var(--primary)}
-    footer a{display:block;margin-bottom:.25rem;color:#555;text-decoration:none}
-    footer a:hover{color:#000}
+/* Proceso / Modo de actuar */
+.proceso-grid{
+  display:grid;gap:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr))
+}
+/* Pasos del proceso. Se animan lateralmente, alternando izquierda y derecha */
+.paso{
+  text-align:center;
+  padding:1.25rem;
+  border:1px solid var(--border-color);
+  border-radius:10px;
+  /* Usa el fondo base para tarjetas de proceso */
+  background:var(--background);
+  opacity:0;
+  transition:opacity .6s ease, transform .6s ease;
+}
+/* Elementos impares: arrancan desplazados hacia la izquierda */
+.paso:nth-child(odd){
+  transform:translateX(-30px);
+}
+/* Elementos pares: arrancan desplazados hacia la derecha */
+.paso:nth-child(even){
+  transform:translateX(30px);
+}
 
-    /* Responsive */
-    @media(max-width:768px){
-      nav a{margin-left:.9rem;font-size:.95rem}
-      .hero h1{font-size:2rem}
-      .hero p{font-size:1rem}
-    }
-    /* Estilos para la lista de entradas del blog */
-    .post-list-wrap{
-      max-width:800px;
-      margin:0 auto;
-    }
-    .post-list{
-      padding-left:1.25rem;
-      margin:0 0 2rem 0;
-      list-style-type:disc;
-    }
-    .post-list li{margin:.6rem 0;}
-    .post-list a{
-      color:var(--primary);
-      text-decoration:none;
-      border-bottom:1px dashed rgba(0,0,0,.2);
-    }
-    .post-list a:hover{
-      color: #000;
-      border-bottom-color: #000;
-      background-color: rgba(0,0,0,0.04);
-    }
-    .post-meta{
-      display:block;
-      font-size:.9rem;
-      color:var(--secondary);
-    }
-    /* Animaciones de entrada para los sectores */
-    .sector {
-      /* Los sectores empiezan ocultos y desplazados hacia abajo */
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    /* Cuando reciben la clase .visible pasan a ser visibles */
-    .sector.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Efecto de elevación y escala al pasar el ratón */
-    .sector:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-    
-    /* Pasos del proceso. Se animan lateralmente, alternando izquierda y derecha */
-    .paso {
-      text-align: center;
-      padding: 1.25rem;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      background: #fff;
-      opacity: 0;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    /* Elementos impares: arrancan desplazados hacia la izquierda */
-    .paso:nth-child(odd) {
-      transform: translateX(-30px);
-    }
-    
-    /* Elementos pares: arrancan desplazados hacia la derecha */
-    .paso:nth-child(even) {
-      transform: translateX(30px);
-    }
-    
-    /* Al volverse visibles, los pasos se colocan en su sitio y se muestran */
-    .paso.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    /* Permite que el cursor muestre la mano en pasos visibles */
-    .paso.visible {
-      cursor: pointer;
-    }
-    
-    /* Efecto hover para los pasos ya visibles */
-    .paso.visible:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-    }
-    
-    /* Cambia la apariencia del círculo numerado al pasar el ratón */
-    .paso.visible:hover span {
-      background: var(--background);
-      color: var(--primary);
-      border: 1px solid var(--primary);
-    }
-    /* Animaciones para las líneas del texto en “Quiénes somos” */
-    #quienes .about-line {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    #quienes .about-line.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* Al volverse visibles, los pasos se colocan en su sitio y se muestran */
+.paso.visible{
+  opacity:1;
+  transform:translateX(0);
+  cursor:pointer;
+}
 
+/* Efecto hover para los pasos ya visibles */
+.paso.visible:hover{
+  transform:translateY(-5px) scale(1.03);
+  box-shadow:0 6px 16px rgba(0,0,0,0.1);
+}
+.paso span{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  border-radius:50%;
+  margin-bottom:.5rem;
+  font-weight:bold;
+}
 
+/* Texto de descripción de cada paso utiliza el color secundario */
+.paso p{
+  color:var(--secondary);
+}
 
+/* Cambiar la apariencia del número cuando el paso esté visible y se pase el ratón */
+.paso.visible:hover span{
+  background:var(--background);
+  color:var(--primary);
+  border:1px solid var(--primary);
+}
+
+/* FAQ */
+details{
+  max-width:700px;
+  margin:1rem auto;
+  border:1px solid var(--border-color);
+  border-radius:10px;
+  padding:1rem;
+  /* Panel de preguntas y respuestas adaptado al tema */
+  background:var(--background);
+}
+summary{cursor:pointer;font-weight:bold;color:var(--primary)}
+details p{margin-top:.5rem;color:var(--secondary)}
+
+/* Formulario */
+form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem}
+input,textarea{
+  padding:.85rem;
+  border:1px solid var(--border-color);
+  border-radius:8px;
+  /* Fondo sutil para campos de formulario; se adapta a claro/oscuro */
+  background:var(--accent);
+  font-size:1rem;
+  color:var(--primary);
+}
+button{
+  padding:1rem;
+  border:none;
+  border-radius:30px;
+  /* Botón principal utiliza los colores invertidos para mayor contraste */
+  background:var(--primary);
+  color:var(--background);
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{background:#222}
+
+/* Footer */
+footer{
+  /* Utiliza el color de acento para el fondo del pie de página; se ajusta según el tema */
+  background:var(--accent);
+  padding:2rem;
+  border-top:1px solid var(--border-color);
+  display:flex;
+  flex-wrap:wrap;
+  gap:2rem;
+  justify-content:space-between;
+}
+footer div{flex:1 1 200px}
+footer h3{margin:.25rem 0 .75rem;color:var(--primary)}
+footer a{display:block;margin-bottom:.25rem;color:#555;text-decoration:none}
+footer a:hover{color:#000}
+
+/* Responsive */
+@media(max-width:768px){
+  nav a{margin-left:.9rem;font-size:.95rem}
+  .hero h1{font-size:2rem}
+  .hero p{font-size:1rem}
+}
+
+/*
+ * Estilos para la lista de entradas del blog
+ * Estos selectores permiten mantener la misma estética en la página de blog
+ * sin necesidad de repetir CSS dentro de cada HTML. Si se añaden nuevas
+ * entradas o se crea otra página de listado, heredará estas reglas.
+ */
+.post-list-wrap{
+  max-width:800px;
+  margin:0 auto;
+}
+.post-list{
+  padding-left:1.25rem;
+  margin:0 0 2rem 0;
+  list-style-type:disc;
+}
+.post-list li{margin:.6rem 0;}
+.post-list a{
+  color:var(--primary);
+  text-decoration:none;
+  border-bottom:1px dashed rgba(0,0,0,.2);
+}
+.post-list a:hover{
+  color:#000;
+  border-bottom-color:#000;
+  background-color:rgba(0,0,0,0.04);
+}
+.post-meta{
+  display:block;
+  font-size:.9rem;
+  color:var(--secondary);
+}
+
+/* Botón para cambiar entre el tema claro y oscuro */
+.theme-toggle{
+  margin-left:1rem;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:1.2rem;
+  padding:0.5rem;
+  line-height:1;
+  color:var(--primary);
+  transition:transform .2s ease;
+}
+.theme-toggle:hover{
+  transform:scale(1.2);
+}
