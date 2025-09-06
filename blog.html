@@ -4,16 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Blog – Anubis A.I. Agency</title>
+  <!-- Enlace a estilos globales -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <a href="index.html#inicio" aria-label="Volver al inicio">
-    <img src="logo.png" alt="Anubis A.I.">
+  <a href="index.html#inicio" aria-label="Ir al inicio">
+    <!-- Logo normal (modo claro) -->
+    <img src="logo.png" alt="Anubis A.I." class="logo-light">
+    <!-- Logo para modo oscuro -->
+    <img src="logo-invertido.png" alt="Anubis A.I." class="logo-dark">
   </a>
   <nav>
+    <!-- Menú de navegación completo, enlazando a la página principal y anclas -->
     <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#sectores">Sectores</a>
+    <a href="index.html#faq">Preguntas frecuentes</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
   </nav>
+  <!-- Botón de alternancia de tema -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
 </header>
 
 <section>
@@ -57,7 +69,9 @@
       Para más información, escríbenos a <a href="mailto:anubis.ai.agency@gmail.com">anubis.ai.agency@gmail.com</a> o solicita una videollamada.</small>
   </p>
 </footer>
-  <script src="script.js"></script>
+
+ <!-- Inclusión del archivo JavaScript para interacciones -->
+ <script src="script.js"></script>
 
 </body>
 </html>
