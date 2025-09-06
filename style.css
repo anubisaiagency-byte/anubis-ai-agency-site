@@ -189,4 +189,35 @@
       font-size:.9rem;
       color:var(--secondary);
     }
+    /* Animaciones de entrada para los sectores */
+    .sector {
+      /* Los sectores empiezan ocultos y desplazados hacia abajo */
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    /* Cuando reciben la clase .visible pasan a ser visibles */
+    .sector.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Efecto de elevación y escala al pasar el ratón */
+    .sector:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    /* Animaciones de entrada para los pasos del proceso */
+    .paso {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .paso.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
