@@ -1,4 +1,4 @@
-<style>
+
     :root{
       --primary:#000;      /* negro para títulos y botones */
       --secondary:#777;    /* gris para subtítulos */
@@ -118,4 +118,3 @@
       .hero h1{font-size:2rem}
       .hero p{font-size:1rem}
     }
-  </style>
