@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-theme');
-      themeToggle.textContent = '☀';
+      themeToggle.textContent = '🌞';
     }
     // Al pulsar el botón se alterna la clase en el body y se guarda la preferencia
     themeToggle.addEventListener('click', () => {
