@@ -385,3 +385,4 @@ body.dark-theme .paso span{
 /* En modo oscuro ocultamos el logo claro y mostramos el invertido */
 body.dark-theme .logo-light { display: none; }
 body.dark-theme .logo-dark  { display: block; }
+
