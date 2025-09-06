@@ -209,15 +209,31 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
     
-    /* Animaciones de entrada para los pasos del proceso */
+    /* Pasos del proceso. Se animan lateralmente, alternando izquierda y derecha */
     .paso {
+      text-align: center;
+      padding: 1.25rem;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      background: #fff;
       opacity: 0;
-      transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     
+    /* Elementos impares: arrancan desplazados hacia la izquierda */
+    .paso:nth-child(odd) {
+      transform: translateX(-30px);
+    }
+    
+    /* Elementos pares: arrancan desplazados hacia la derecha */
+    .paso:nth-child(even) {
+      transform: translateX(30px);
+    }
+    
+    /* Al volverse visibles, los pasos se colocan en su sitio y se muestran */
     .paso.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
+
 
