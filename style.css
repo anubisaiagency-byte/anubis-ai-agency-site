@@ -235,5 +235,34 @@
       opacity: 1;
       transform: translateX(0);
     }
+    /* Permite que el cursor muestre la mano en pasos visibles */
+    .paso.visible {
+      cursor: pointer;
+    }
+    
+    /* Efecto hover para los pasos ya visibles */
+    .paso.visible:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    
+    /* Cambia la apariencia del círculo numerado al pasar el ratón */
+    .paso.visible:hover span {
+      background: var(--background);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    /* Animaciones para las líneas del texto en “Quiénes somos” */
+    #quienes .about-line {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    #quienes .about-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
 
 
