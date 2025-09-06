@@ -369,3 +369,13 @@ footer a:hover{color:#000}
 .theme-toggle:hover{
   transform:scale(1.2);
 }
+
+/* En modo oscuro, los círculos numerados de "Cómo trabajamos" invierten colores
+   para asegurar que el número sea visible. El fondo pasa a ser el color de 
+   fondo general y el texto adopta el color primario. También se añade un
+   borde para destacar sobre el fondo oscuro. */
+body.dark-theme .paso span{
+  background:var(--background);
+  color:var(--primary);
+  border:1px solid var(--primary);
+}
