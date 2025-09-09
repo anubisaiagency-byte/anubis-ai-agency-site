@@ -87,17 +87,20 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('hero-particles');
   if (!canvas) return;
+  const hero   = canvas.parentElement;
+  const ctx    = canvas.getContext('2d', { alpha: true });
 
-  const ctx = canvas.getContext('2d', { alpha: true });
   let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
   let dots = [];
+  // Config (ajusta a tu gusto)
+  const AREA_PER_DOT = 12000; // px² por partícula (↓ = más partículas)
+  const SPEED = 0.22;         // velocidad base
+  const R_MIN = 1.0, R_MAX = 2.6;
+  const LINK_DIST = 120;      // distancia para líneas (px)
+  const MOUSE_RADIUS = 140;   // radio de repulsión
+  const PARALLAX = 0.02;      // leve seguimiento del ratón
 
-  // Ajusta la densidad a tu gusto (cuanto mayor, más partículas)
-  const BASE_DENSITY = 14000;    // px² por partícula (↑ = menos partículas)
-  const SPEED = 0.18;            // velocidad base
-  const R_MIN = 1.0, R_MAX = 2.4;
-
-  const hero = canvas.parentElement;
+  const mouse = { x: -9999, y: -9999, inside: false };
 
   function setSize(){
     const r = hero.getBoundingClientRect();
@@ -107,13 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.style.height = r.height + 'px';
   }
 
+  function colorVar(name, fallback){
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue(name).trim() || fallback;
+  }
+
   function makeDot(){
     return {
-      x: Math.random()*w,
-      y: Math.random()*h,
+      x: Math.random()*w, y: Math.random()*h,
       vx: (-SPEED + Math.random()*(2*SPEED))*dpr,
       vy: (-SPEED + Math.random()*(2*SPEED))*dpr,
-      r: (R_MIN + Math.random()*(R_MAX - R_MIN))*dpr
+      r: (R_MIN + Math.random()*(R_MAX - R_MIN))*dpr,
+      tw: Math.random()*Math.PI*2, // twinkle fase
     };
   }
 
@@ -121,37 +129,91 @@ document.addEventListener('DOMContentLoaded', () => {
     setSize();
     dots = [];
     const area = (w*h)/(dpr*dpr);
-    const count = Math.max(24, Math.round(area / BASE_DENSITY));
+    const count = Math.max(36, Math.round(area / AREA_PER_DOT));
     for (let i=0;i<count;i++) dots.push(makeDot());
     loop();
   }
 
   function step(d){
+    // leve parallax hacia el ratón
+    if (mouse.inside){
+      d.x += (mouse.x - d.x) * PARALLAX * 0.002;
+      d.y += (mouse.y - d.y) * PARALLAX * 0.002;
+      // repulsión
+      const dx = d.x - mouse.x, dy = d.y - mouse.y;
+      const dist2 = dx*dx + dy*dy, rad2 = (MOUSE_RADIUS*dpr)*(MOUSE_RADIUS*dpr);
+      if (dist2 < rad2){
+        const f = (1 - dist2/rad2);
+        d.vx += (dx/Math.sqrt(dist2 || 1)) * f * 0.12;
+        d.vy += (dy/Math.sqrt(dist2 || 1)) * f * 0.12;
+      }
+    }
     d.x += d.vx; d.y += d.vy;
+    // rebote suave en bordes
     if (d.x < -20 || d.x > w+20) d.vx *= -1;
     if (d.y < -20 || d.y > h+20) d.vy *= -1;
+    // twinkle
+    d.tw += 0.02;
   }
 
   function draw(){
     ctx.clearRect(0,0,w,h);
-    const color = getComputedStyle(document.documentElement)
-      .getPropertyValue('--particle-color').trim() || 'rgba(0,0,0,.8)';
-    ctx.fillStyle = color;
+    const dotColor  = colorVar('--particle-color', 'rgba(0,0,0,.8)');
+    const lineColor = colorVar('--link-color',     'rgba(0,0,0,.12)');
+
+    // PUNTOS
     for (let i=0;i<dots.length;i++){
       const d = dots[i];
+      const tw = 0.85 + Math.sin(d.tw)*0.15; // brillo sutil
+      ctx.fillStyle = dotColor;
+      ctx.globalAlpha = tw;
       ctx.beginPath();
       ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
       ctx.fill();
+      ctx.globalAlpha = 1;
       step(d);
     }
+
+    // LÍNEAS
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 1 * dpr;
+    for (let i=0;i<dots.length;i++){
+      for (let j=i+1;j<dots.length;j++){
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist2 = dx*dx + dy*dy;
+        const max2 = (LINK_DIST*dpr)*(LINK_DIST*dpr);
+        if (dist2 < max2){
+          ctx.globalAlpha = 1 - dist2 / max2;
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
   }
 
   function loop(){ draw(); requestAnimationFrame(loop); }
+
+  // Eventos de interacción
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    mouse.x = (e.clientX - rect.left) * dpr;
+    mouse.y = (e.clientY - rect.top)  * dpr;
+    mouse.inside = true;
+  });
+  hero.addEventListener('mouseleave', () => { mouse.inside = false; mouse.x = mouse.y = -9999; });
 
   // Resize robusto
   const ro = new ResizeObserver(() => setTimeout(init, 60));
   ro.observe(hero);
   window.addEventListener('resize', () => setTimeout(init, 60), {passive:true});
+
+  // Reaccionar a cambios de tema (clase/atributo en <html> o <body>)
+  const mo = new MutationObserver(() => { /* colores se leen cada frame; no hace falta reiniciar */ });
+  mo.observe(document.documentElement, { attributes:true, attributeFilter:['class','data-theme'] });
 
   init();
 });
