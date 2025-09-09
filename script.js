@@ -96,10 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let dots = [];
 
   // —— Ajustes suaves (menos caos)
-  const AREA_PER_DOT = 18000; // px² por partícula (↑ = menos densidad)
+  const AREA_PER_DOT = 11000; // px² por partícula (↑ = menos densidad)
   const SPEED        = 0.10;  // velocidad base ↓
-  const R_MIN = 1.0, R_MAX = 2.2;
-  const LINK_DIST    = 90;    // conexiones cortas
+  const R_MIN = 1.3, R_MAX = 2.6;
+  const LINK_DIST    = 140;    // conexiones cortas
   const MOUSE_RADIUS = 110;   // repulsión sutil
   const PARALLAX     = 0.008; // parallax sutil
 
