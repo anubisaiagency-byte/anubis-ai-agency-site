@@ -1,10 +1,8 @@
 /* =========================================================
-   Anubis AI Agency – CSS principal (ordenado y sin duplicados)
+   Anubis AI Agency – CSS principal (limpio y funcional)
    ========================================================= */
 
-/* ----------------------------
-   1) Variables (tema claro)
-   ---------------------------- */
+/* 1) Variables (tema claro) */
 :root{
   /* UI global */
   --primary:#000;
@@ -16,18 +14,26 @@
   /* Tipografía base */
   font-family:"Helvetica Neue", Arial, sans-serif;
 
-  /* Hero (claro) */
-  --hero-bg:#ffffff;
-  --particle-color:rgba(0,0,0,.78);
-  --link-color:rgba(0,0,0,.14);
-  --particle-opacity:.18;
+  /* Hero (claro) – neutro */
+  --hero-bg-start:#f6f8fc;
+  --hero-bg-end:#eef1f6;
+  --hero-bg-soft:rgba(0,0,0,.04);
+  --hero-vignette:rgba(0,0,0,.06);
+
   --hero-text:#0b0b0f;
   --hero-muted:#333a4a;
+
+  /* Partículas (claro) */
+  --particle-color:rgba(10,14,20,.75);
+  --link-color:rgba(10,14,20,.18);
+  --particle-opacity:.30;
+
+  /* Botones */
+  --btn-primary-bg:#0b0b0f;  --btn-primary-fg:#ffffff;
+  --btn-secondary-bg:#ffffff; --btn-secondary-fg:#0b0b0f;
 }
 
-/* ----------------------------
-   2) Tema oscuro (usa body.dark-theme)
-   ---------------------------- */
+/* 2) Tema oscuro (usa body.dark-theme) */
 body.dark-theme{
   --primary:#fff;
   --secondary:#aaa;
@@ -36,17 +42,25 @@ body.dark-theme{
   --border-color:rgba(255,255,255,.15);
 
   /* Hero (oscuro) */
-  --hero-bg:#0b0b0f;
-  --particle-color:rgba(255,255,255,.86);
-  --link-color:rgba(255,255,255,.18);
-  --particle-opacity:.26;
+  --hero-bg-start:#0e1116;
+  --hero-bg-end:#0b0e13;
+  --hero-bg-soft:rgba(255,255,255,.03);
+  --hero-vignette:rgba(255,255,255,.05);
+
   --hero-text:#ffffff;
   --hero-muted:#c9ceda;
+
+  /* Partículas (oscuro) */
+  --particle-color:rgba(255,255,255,.88);
+  --link-color:rgba(255,255,255,.22);
+  --particle-opacity:.32;
+
+  /* Botones */
+  --btn-primary-bg:#ffffff;   --btn-primary-fg:#0b0b0f;
+  --btn-secondary-bg:#12151b; --btn-secondary-fg:#ffffff;
 }
 
-/* ----------------------------
-   3) Base & layout
-   ---------------------------- */
+/* 3) Base & layout generales */
 html{ scroll-behavior:smooth; }
 body{ margin:0; background:var(--background); color:var(--primary); }
 
@@ -72,7 +86,7 @@ nav a:hover{ color:var(--secondary); }
 /* Separador */
 hr{ border:none; border-top:1px solid rgba(0,0,0,.05); margin:4rem 0; }
 
-/* ===== HERO neutro full-bleed + tema ===== */
+/* 4) HERO (full-bleed, neutro, constelaciones) */
 .hero{
   position:relative; isolation:isolate; overflow:hidden;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -85,76 +99,51 @@ hr{ border:none; border-top:1px solid rgba(0,0,0,.05); margin:4rem 0; }
   width:100vw; max-width:100vw;
   margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
 }
-
-/* Vignette muy sutil SIEMPRE detrás del canvas */
 .hero::after{
   content:""; position:absolute; inset:-20%; z-index:-1; pointer-events:none;
   background:radial-gradient(70rem 70rem at 50% 50%, var(--hero-vignette) 0%, transparent 65%);
 }
-
-/* Canvas por encima de la viñeta y debajo del contenido */
+/* Canvas */
 #hero-particles{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:var(--particle-opacity); }
+/* Contenido por encima */
 .hero > *:not(#hero-particles){ position:relative; z-index:1; }
 
-/* Tipos y logos en el hero */
-.hero h1{ color:var(--hero-text); font-size:clamp(2rem,3.2vw,3.2rem); margin:.5rem 0 .5rem; }
+/* Tipografía hero */
+.hero h1{ color:var(--hero-text); font-size:clamp(2rem,3.2vw,3.2rem); margin:.5rem 0 .75rem; }
 .hero p { color:var(--hero-muted); font-size:clamp(1rem,1.1vw,1.25rem); margin:0 0 2rem; font-weight:600; }
 
-/* Logos del hero (negro para día, blanco para noche) */
-.hero .logo-light,.hero .logo-dark{ height:120px; width:auto; margin-bottom:1rem; }
+/* Logos (negro día, blanco noche) */
 .logo-dark{ display:none; }
 body.dark-theme .logo-light{ display:none; }
 body.dark-theme .logo-dark{ display:block; }
+.hero .logo-light,.hero .logo-dark{ height:120px; width:auto; margin-bottom:1rem; }
 
-/* Botones adaptativos por tema (tu HTML ya usa .primary / .secondary) */
-.buttons a.primary{ background:var(--btn-primary-bg); color:var(--btn-primary-fg); }
-.buttons a.secondary{ background:var(--btn-secondary-bg); color:var(--btn-secondary-fg); }
-
-/* ===== Variables del hero por tema ===== */
-/* Día (neutro claro) */
-:root{
-  --hero-bg-start:#f6f8fc;
-  --hero-bg-end:#eef1f6;
-  --hero-bg-soft:rgba(0,0,0,.04);
-  --hero-vignette:rgba(0,0,0,.06);
-
-  --hero-text:#0b0b0f;
-  --hero-muted:#333a4a;
-
-  --particle-color:rgba(10,14,20,.75);  /* visibles en claro */
-  --link-color:rgba(10,14,20,.18);
-  --particle-opacity:.30;               /* ↑ un poco para que se vean */
-
-  --btn-primary-bg:#0b0b0f;  --btn-primary-fg:#ffffff;
-  --btn-secondary-bg:#ffffff; --btn-secondary-fg:#0b0b0f;
+/* Botones del hero */
+.buttons{ display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center; }
+.buttons a{
+  display:inline-block; padding:.85rem 1.4rem; border-radius:999px;
+  font-weight:700; text-decoration:none; transition:transform .15s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
+  border:1px solid transparent;
 }
-
-/* Noche (neutro oscuro) */
-body.dark-theme{
-  --hero-bg-start:#0e1116;
-  --hero-bg-end:#0b0e13;
-  --hero-bg-soft:rgba(255,255,255,.03);
-  --hero-vignette:rgba(255,255,255,.05);
-
-  --hero-text:#ffffff;
-  --hero-muted:#c9ceda;
-
-  --particle-color:rgba(255,255,255,.88); /* muy visibles en oscuro */
-  --link-color:rgba(255,255,255,.22);
-  --particle-opacity:.32;
-
-  --btn-primary-bg:#ffffff;  --btn-primary-fg:#0b0b0f;
-  --btn-secondary-bg:#12151b; --btn-secondary-fg:#ffffff;
+.buttons a.primary{
+  background:var(--btn-primary-bg); color:var(--btn-primary-fg);
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
+.buttons a.secondary{
+  background:var(--btn-secondary-bg); color:var(--btn-secondary-fg);
+  border-color:rgba(0,0,0,.06);
+}
+body.dark-theme .buttons a.secondary{ border-color:rgba(255,255,255,.12); }
+.buttons a:hover{ transform:translateY(-2px); }
+.buttons a.primary:hover{ box-shadow:0 10px 24px rgba(0,0,0,.18); }
+.buttons a.secondary:hover{ box-shadow:0 8px 20px rgba(0,0,0,.12); }
 
-/* ----------------------------
-   5) Secciones y componentes
-   ---------------------------- */
+/* 5) Secciones y componentes */
 section{ padding:4rem 2rem; max-width:1200px; margin:0 auto; }
 h2{ text-align:center; margin-bottom:2rem; color:var(--primary); }
 p.section-text{ max-width:800px; margin:0 auto 2rem; text-align:center; color:var(--secondary); }
 
-/* Quiénes somos (aparición en scroll) */
+/* Quiénes somos (aparición) */
 #quienes .about-line{ opacity:0; transform:translateY(20px); transition:opacity .6s, transform .6s; }
 #quienes .about-line.visible{ opacity:1; transform:translateY(0); }
 
@@ -181,7 +170,7 @@ p.section-text{ max-width:800px; margin:0 auto 2rem; text-align:center; color:va
 .sector .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
 .sector h3{ margin:0; padding:1rem; text-align:center; font-size:1.05rem; color:var(--primary); }
 
-/* Proceso / Modo de actuar */
+/* Proceso */
 .proceso-grid{ display:grid; gap:1.5rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
 .paso{
   text-align:center; padding:1.25rem; border:1px solid var(--border-color); border-radius:10px;
@@ -192,11 +181,10 @@ p.section-text{ max-width:800px; margin:0 auto 2rem; text-align:center; color:va
 .paso.visible{ opacity:1; transform:translateX(0); cursor:pointer; }
 .paso.visible:hover{ transform:translateY(-5px) scale(1.03); box-shadow:0 6px 16px rgba(0,0,0,.1); }
 .paso span{
-  display:inline-block; background:var(--primary); color:#fff; width:40px; height:40px;
-  line-height:40px; border-radius:50%; margin-bottom:.5rem; font-weight:bold;
+  display:inline-block; background:var(--primary); color:#fff; width:40px; height:40px; line-height:40px;
+  border-radius:50%; margin-bottom:.5rem; font-weight:bold;
 }
 .paso p{ color:var(--secondary); }
-/* Números invertidos en oscuro */
 body.dark-theme .paso span{ background:var(--background); color:var(--primary); border:1px solid var(--primary); }
 
 /* FAQ */
@@ -214,8 +202,8 @@ input,textarea{
   background:var(--accent); font-size:1rem; color:var(--primary);
 }
 button{
-  padding:1rem; border:none; border-radius:30px;
-  background:var(--primary); color:var(--background); font-weight:bold; cursor:pointer;
+  padding:1rem; border:none; border-radius:30px; background:var(--primary);
+  color:var(--background); font-weight:bold; cursor:pointer;
 }
 button:hover{ background:#222; }
 
@@ -229,21 +217,15 @@ footer h3{ margin:.25rem 0 .75rem; color:var(--primary); }
 footer a{ display:block; margin-bottom:.25rem; color:#555; text-decoration:none; }
 footer a:hover{ color:#000; }
 
-/* ----------------------------
-   6) Blog / lista de posts
-   ---------------------------- */
+/* 6) Blog */
 .post-list-wrap{ max-width:800px; margin:0 auto; }
 .post-list{ padding-left:1.25rem; margin:0 0 2rem 0; list-style:disc; }
 .post-list li{ margin:.6rem 0; }
-.post-list a{
-  color:var(--primary); text-decoration:none; border-bottom:1px dashed rgba(0,0,0,.2);
-}
+.post-list a{ color:var(--primary); text-decoration:none; border-bottom:1px dashed rgba(0,0,0,.2); }
 .post-list a:hover{ color:#000; border-bottom-color:#000; background-color:rgba(0,0,0,0.04); }
 .post-meta{ display:block; font-size:.9rem; color:var(--secondary); }
 
-/* ----------------------------
-   7) Toggle de tema (icono)
-   ---------------------------- */
+/* 7) Toggle de tema */
 .theme-toggle{
   margin-left:1rem; background:none; border:none; cursor:pointer;
   font-size:1.2rem; padding:.5rem; line-height:1; color:var(--primary);
@@ -251,11 +233,9 @@ footer a:hover{ color:#000; }
 }
 .theme-toggle:hover{ transform:scale(1.2); }
 
-/* ----------------------------
-   8) Responsive
-   ---------------------------- */
+/* 8) Responsive */
 @media (max-width:768px){
   nav a{ margin-left:.9rem; font-size:.95rem; }
   .hero h1{ font-size:2rem; }
-  .hero p{ font-size:1rem; }
+  .hero p { font-size:1rem; }
 }
