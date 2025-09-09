@@ -503,4 +503,47 @@ html.dark .hero .logo-light, body.dark .hero .logo-light, [data-theme="dark"] .h
 html.dark .hero .logo-dark,  body.dark .hero .logo-dark,  [data-theme="dark"] .hero .logo-dark  { display:block; }
 html:not(.dark) .hero .logo-light, body:not(.dark) .hero .logo-light, [data-theme="light"] .hero .logo-light { display:block; }
 html:not(.dark) .hero .logo-dark,  body:not(.dark) .hero .logo-dark,  [data-theme="light"] .hero .logo-dark  { display:none; }
+/* ===== OVERRIDES FINALES PARA EL HERO ===== */
+
+/* Día explícito (usa el que aplique en tu web) */
+html.light .hero,
+body.light .hero,
+[data-theme="light"] .hero,
+html:not(.dark):not([data-theme="dark"]) .hero {
+  --hero-bg: #ffffff !important;
+  --particle-color: rgba(0,0,0,.78) !important;
+  --link-color: rgba(0,0,0,.14) !important;
+  --particle-opacity: .18 !important;
+  --hero-text:#0b0b0f !important;
+  --hero-muted:#333a4a !important;
+}
+
+/* Noche explícita (por si tu toggle usa .dark o data-theme=dark) */
+html.dark .hero,
+body.dark .hero,
+[data-theme="dark"] .hero {
+  --hero-bg:#0b0b0f !important;
+  --particle-color: rgba(255,255,255,.86) !important;
+  --link-color: rgba(255,255,255,.18) !important;
+  --particle-opacity:.26 !important;
+  --hero-text:#ffffff !important;
+  --hero-muted:#c9ceda !important;
+}
+
+/* Logo correcto por tema (mismo selector compuesto) */
+html.light .hero .logo-light,
+body.light .hero .logo-light,
+[data-theme="light"] .hero .logo-light,
+html:not(.dark):not([data-theme="dark"]) .hero .logo-light { display:block !important; }
+html.light .hero .logo-dark,
+body.light .hero .logo-dark,
+[data-theme="light"] .hero .logo-dark,
+html:not(.dark):not([data-theme="dark"]) .hero .logo-dark { display:none !important; }
+
+html.dark .hero .logo-light,
+body.dark .hero .logo-light,
+[data-theme="dark"] .hero .logo-light { display:none !important; }
+html.dark .hero .logo-dark,
+body.dark .hero .logo-dark,
+[data-theme="dark"] .hero .logo-dark { display:block !important; }
 
