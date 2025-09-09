@@ -84,119 +84,122 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+// Partículas del hero – minimalistas, calmadas e interactivas
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('hero-particles');
   if (!canvas) return;
 
   const hero = canvas.parentElement;
-  const ctx = canvas.getContext('2d', { alpha:true });
+  const ctx = canvas.getContext('2d', { alpha: true });
 
   let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
   let dots = [];
-  const mouse = { x:-9999, y:-9999, inside:false };
 
-  // ---------- Ajustes neutrales, elegantes y visibles ----------
-  const DENSITY_BASE  = 14500; // px² por partícula (↓ = más)
-  const LAYERS        = [      // dos capas para sensación de profundidad
-    { speed:0.06, r:[1.2,2.2], alpha:1.00 },
-    { speed:0.12, r:[0.9,1.6], alpha:0.85 },
-  ];
-  const LINK_DIST     = 110;
-  const PARALLAX      = 0.010;
-  const MOUSE_RADIUS  = 120;
-  const FRICTION      = 0.986;
-  const VMAX          = 0.35;
+  // —— Ajustes suaves (menos caos)
+  const AREA_PER_DOT = 18000; // px² por partícula (↑ = menos densidad)
+  const SPEED        = 0.10;  // velocidad base ↓
+  const R_MIN = 1.0, R_MAX = 2.2;
+  const LINK_DIST    = 90;    // conexiones cortas
+  const MOUSE_RADIUS = 110;   // repulsión sutil
+  const PARALLAX     = 0.008; // parallax sutil
 
-  // ---------- Utils ----------
-  const cssVar = (n,f)=>getComputedStyle(document.body).getPropertyValue(n).trim()||f;
+  const mouse = { x: -9999, y: -9999, inside: false };
 
   function setSize(){
     const r = hero.getBoundingClientRect();
-    w = canvas.width  = Math.floor(r.width  * dpr);
+    w = canvas.width  = Math.floor(r.width * dpr);
     h = canvas.height = Math.floor(r.height * dpr);
     canvas.style.width  = r.width  + 'px';
     canvas.style.height = r.height + 'px';
   }
-
-  function makeDot(layer){
-    const [rmin,rmax] = layer.r;
-    const s = layer.speed;
+  function cssVar(name, fallback){
+    return getComputedStyle(document.body).getPropertyValue(name).trim() || fallback;
+  }
+  function makeDot(){
     return {
       x: Math.random()*w, y: Math.random()*h,
-      vx: (-s + Math.random()*(2*s))*dpr,
-      vy: (-s + Math.random()*(2*s))*dpr,
-      r: (rmin + Math.random()*(rmax-rmin))*dpr,
-      a: layer.alpha, tw: Math.random()*Math.PI*2, layer
+      vx: (-SPEED + Math.random()*(2*SPEED))*dpr,
+      vy: (-SPEED + Math.random()*(2*SPEED))*dpr,
+      r: (R_MIN + Math.random()*(R_MAX - R_MIN))*dpr,
+      tw: Math.random()*Math.PI*2
     };
   }
-
   function init(){
     setSize();
     dots = [];
     const area = (w*h)/(dpr*dpr);
-    const baseCount = Math.max(36, Math.round(area / DENSITY_BASE));
-    // repartir entre capas (60% delante, 40% fondo)
-    const counts = [Math.round(baseCount*0.6), Math.round(baseCount*0.4)];
-    dots.push(...Array.from({length:counts[0]}, ()=>makeDot(LAYERS[0])));
-    dots.push(...Array.from({length:counts[1]}, ()=>makeDot(LAYERS[1])));
+    const count = Math.max(34, Math.round(area / AREA_PER_DOT));
+    for (let i=0;i<count;i++) dots.push(makeDot());
     loop();
   }
 
   function step(d){
+    // parallax + repulsión suaves
     if (mouse.inside){
-      d.x += (mouse.x - d.x) * PARALLAX * d.layer.speed; // parallax por capa
-      d.y += (mouse.y - d.y) * PARALLAX * d.layer.speed;
+      d.x += (mouse.x - d.x) * PARALLAX * 0.002;
+      d.y += (mouse.y - d.y) * PARALLAX * 0.002;
 
-      const dx=d.x-mouse.x, dy=d.y-mouse.y;
-      const dist2=dx*dx+dy*dy, rad2=(MOUSE_RADIUS*dpr)*(MOUSE_RADIUS*dpr);
+      const dx = d.x - mouse.x, dy = d.y - mouse.y;
+      const dist2 = dx*dx + dy*dy, rad2 = (MOUSE_RADIUS*dpr)*(MOUSE_RADIUS*dpr);
       if (dist2 < rad2){
-        const m=Math.sqrt(dist2)||1, f=(1-dist2/rad2)*0.08;
-        d.vx += (dx/m)*f; d.vy += (dy/m)*f;
+        const m = Math.sqrt(dist2) || 1;
+        const f = (1 - dist2/rad2) * 0.08; // fuerza baja
+        d.vx += (dx/m) * f;
+        d.vy += (dy/m) * f;
       }
     }
 
-    d.x+=d.vx; d.y+=d.vy;
-    d.vx*=FRICTION; d.vy*=FRICTION;
+    d.x += d.vx; d.y += d.vy;
 
-    const vmax = VMAX*dpr;
-    if (d.vx>vmax) d.vx=vmax; if (d.vx<-vmax) d.vx=-vmax;
-    if (d.vy>vmax) d.vy=vmax; if (d.vy<-vmax) d.vy=-vmax;
+    // fricción para estabilizar y evitar caótico
+    d.vx *= 0.985; d.vy *= 0.985;
 
-    if (d.x<-20||d.x>w+20) d.vx*=-1;
-    if (d.y<-20||d.y>h+20) d.vy*=-1;
+    // límite de velocidad
+    const vmax = 0.35 * dpr;
+    if (d.vx >  vmax) d.vx =  vmax; if (d.vx < -vmax) d.vx = -vmax;
+    if (d.vy >  vmax) d.vy =  vmax; if (d.vy < -vmax) d.vy = -vmax;
 
-    d.tw += 0.012; // twinkle suave
+    // rebote suave en bordes
+    if (d.x < -20 || d.x > w+20) d.vx *= -1;
+    if (d.y < -20 || d.y > h+20) d.vy *= -1;
+
+    // twinkle discreto
+    d.tw += 0.012;
   }
 
   function draw(){
     ctx.clearRect(0,0,w,h);
-    const dotColor  = cssVar('--particle-color','rgba(10,14,20,.8)');
-    const lineColor = cssVar('--link-color','rgba(10,14,20,.18)');
+    const dotColor  = cssVar('--particle-color', 'rgba(0,0,0,.8)');
+    const lineColor = cssVar('--link-color',     'rgba(0,0,0,.12)');
 
-    // PUNTOS (las dos capas en un pasado)
+    // puntos
     for (let i=0;i<dots.length;i++){
       const d = dots[i];
-      const tw = 0.92 + Math.sin(d.tw)*0.08;
+      const tw = 0.92 + Math.sin(d.tw)*0.08; // brillo muy sutil
       ctx.fillStyle = dotColor;
-      ctx.globalAlpha = tw * d.a;
+      ctx.globalAlpha = tw;
       ctx.beginPath();
-      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
       ctx.fill();
       ctx.globalAlpha = 1;
       step(d);
     }
 
-    // LÍNEAS
+    // líneas
     ctx.strokeStyle = lineColor;
-    ctx.lineWidth = 1*dpr;
+    ctx.lineWidth = 1 * dpr;
     const max2 = (LINK_DIST*dpr)*(LINK_DIST*dpr);
     for (let i=0;i<dots.length;i++){
       for (let j=i+1;j<dots.length;j++){
-        const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y;
-        const d2=dx*dx+dy*dy;
-        if (d2<max2){
-          ctx.globalAlpha = 1 - d2/max2;
-          ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y); ctx.stroke();
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < max2){
+          ctx.globalAlpha = 1 - d2 / max2;
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.stroke();
         }
       }
     }
@@ -205,19 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loop(){ draw(); requestAnimationFrame(loop); }
 
-  // Interacción
-  hero.addEventListener('mousemove', e=>{
-    const r = hero.getBoundingClientRect();
-    mouse.x = (e.clientX - r.left) * dpr;
-    mouse.y = (e.clientY - r.top)  * dpr;
+  // interacción
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    mouse.x = (e.clientX - rect.left) * dpr;
+    mouse.y = (e.clientY - rect.top)  * dpr;
     mouse.inside = true;
   });
-  hero.addEventListener('mouseleave', ()=>{ mouse.inside=false; mouse.x=mouse.y=-9999; });
+  hero.addEventListener('mouseleave', () => { mouse.inside = false; mouse.x = mouse.y = -9999; });
 
-  // Resize robusto
-  const ro = new ResizeObserver(()=>setTimeout(init,80));
+  // resize robusto
+  const ro = new ResizeObserver(() => setTimeout(init, 60));
   ro.observe(hero);
-  addEventListener('resize', ()=>setTimeout(init,80), {passive:true});
+  window.addEventListener('resize', () => setTimeout(init, 60), {passive:true});
 
   init();
 });
