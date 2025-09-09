@@ -84,3 +84,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('hero-particles');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let dots = [];
+
+  // Ajusta la densidad a tu gusto (cuanto mayor, más partículas)
+  const BASE_DENSITY = 14000;    // px² por partícula (↑ = menos partículas)
+  const SPEED = 0.18;            // velocidad base
+  const R_MIN = 1.0, R_MAX = 2.4;
+
+  const hero = canvas.parentElement;
+
+  function setSize(){
+    const r = hero.getBoundingClientRect();
+    w = canvas.width  = Math.floor(r.width * dpr);
+    h = canvas.height = Math.floor(r.height * dpr);
+    canvas.style.width  = r.width  + 'px';
+    canvas.style.height = r.height + 'px';
+  }
+
+  function makeDot(){
+    return {
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx: (-SPEED + Math.random()*(2*SPEED))*dpr,
+      vy: (-SPEED + Math.random()*(2*SPEED))*dpr,
+      r: (R_MIN + Math.random()*(R_MAX - R_MIN))*dpr
+    };
+  }
+
+  function init(){
+    setSize();
+    dots = [];
+    const area = (w*h)/(dpr*dpr);
+    const count = Math.max(24, Math.round(area / BASE_DENSITY));
+    for (let i=0;i<count;i++) dots.push(makeDot());
+    loop();
+  }
+
+  function step(d){
+    d.x += d.vx; d.y += d.vy;
+    if (d.x < -20 || d.x > w+20) d.vx *= -1;
+    if (d.y < -20 || d.y > h+20) d.vy *= -1;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const color = getComputedStyle(document.documentElement)
+      .getPropertyValue('--particle-color').trim() || 'rgba(0,0,0,.8)';
+    ctx.fillStyle = color;
+    for (let i=0;i<dots.length;i++){
+      const d = dots[i];
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
+      ctx.fill();
+      step(d);
+    }
+  }
+
+  function loop(){ draw(); requestAnimationFrame(loop); }
+
+  // Resize robusto
+  const ro = new ResizeObserver(() => setTimeout(init, 60));
+  ro.observe(hero);
+  window.addEventListener('resize', () => setTimeout(init, 60), {passive:true});
+
+  init();
+});
