@@ -460,4 +460,47 @@ html.dark .hero::after{ background:
 /* En modo oscuro ocultamos el logo claro y mostramos el invertido */
 body.dark-theme .logo-light { display: none; }
 body.dark-theme .logo-dark  { display: block; }
+/* ===== HERO full-bleed sin bordes ===== */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  min-height: 92vh; text-align: center; background: var(--hero-bg);
+}
+.hero.fullbleed {
+  position: relative; left: 50%; right: 50%;
+  margin-left: -50vw; margin-right: -50vw;
+  width: 100vw; max-width: 100vw; padding: clamp(64px, 8vh, 120px) 16px;
+}
+#hero-particles { position:absolute; inset:0; z-index:0; pointer-events:none; opacity: var(--particle-opacity); }
+.hero > *:not(#hero-particles) { position: relative; z-index: 1; }
+
+/* ===== Variables por tema (soporta .dark, [data-theme=dark] y media-query) ===== */
+:root{
+  --hero-bg:#ffffff;
+  --particle-color: rgba(0,0,0,.78);
+  --link-color: rgba(0,0,0,.14);
+  --particle-opacity:.20;
+  --hero-text:#0b0b0f; --hero-muted:#333a4a;
+}
+html.dark, body.dark, [data-theme="dark"]{
+  --hero-bg:#0b0b0f;
+  --particle-color: rgba(255,255,255,.86);
+  --link-color: rgba(255,255,255,.18);
+  --particle-opacity:.26;
+  --hero-text:#ffffff; --hero-muted:#c9ceda;
+}
+/* Fallback por preferencia del SO si no usas clases */
+@media (prefers-color-scheme: dark){
+  :root{ --hero-bg:#0b0b0f; --particle-color:rgba(255,255,255,.86); --link-color:rgba(255,255,255,.18); --particle-opacity:.26; --hero-text:#fff; --hero-muted:#c9ceda; }
+}
+
+.hero h1{ color: var(--hero-text); }
+.hero p { color: var(--hero-muted); }
+
+/* Logos correctos por tema */
+.hero .logo-light, .hero .logo-dark { display:block; width:min(220px,40vw); height:auto; margin:0 auto 1rem; }
+html.dark .hero .logo-light, body.dark .hero .logo-light, [data-theme="dark"] .hero .logo-light { display:none; }
+html.dark .hero .logo-dark,  body.dark .hero .logo-dark,  [data-theme="dark"] .hero .logo-dark  { display:block; }
+html:not(.dark) .hero .logo-light, body:not(.dark) .hero .logo-light, [data-theme="light"] .hero .logo-light { display:block; }
+html:not(.dark) .hero .logo-dark,  body:not(.dark) .hero .logo-dark,  [data-theme="light"] .hero .logo-dark  { display:none; }
 
