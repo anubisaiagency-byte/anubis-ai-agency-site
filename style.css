@@ -376,6 +376,86 @@ body.dark-theme .paso span{
 }
 /* Mostrar solo el logo claro por defecto */
 .logo-dark { display: none; }
+/* ===== Hero full-bleed y base ===== */
+.hero { 
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 90vh; display:flex; flex-direction:column; 
+  align-items:center; justify-content:center; text-align:center;
+  background: var(--hero-bg);
+}
+
+/* Romper el contenedor centrado y ocupar todo el ancho de la ventana */
+.hero.fullbleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Canvas de partículas debajo del contenido */
+#hero-particles{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  opacity: var(--particle-opacity);
+}
+
+/* Contenido por encima del canvas */
+.hero > *:not(#hero-particles){ position:relative; z-index:1; }
+
+/* ===== Variables de tema (por defecto: claro) ===== */
+:root{
+  --hero-bg: #ffffff;
+  --particle-color: rgba(0,0,0,.80);
+  --particle-opacity: .18;
+  --hero-text: #0b0b0f;
+  --hero-muted: #333a4a;
+}
+
+/* Tema oscuro: fondo negro + partículas blancas */
+html.dark, body.dark{
+  --hero-bg: #0b0b0f;
+  --particle-color: rgba(255,255,255,.85);
+  --particle-opacity: .25;
+  --hero-text: #ffffff;
+  --hero-muted: #c9ceda;
+}
+
+/* Fallback si no usas clases y dependes del sistema */
+@media (prefers-color-scheme: dark){
+  :root{
+    --hero-bg: #0b0b0f;
+    --particle-color: rgba(255,255,255,.85);
+    --particle-opacity: .25;
+    --hero-text: #ffffff;
+    --hero-muted: #c9ceda;
+  }
+}
+
+/* Tipografía del hero (no cambia tu diseño, solo aseguro contraste) */
+.hero h1{ color: var(--hero-text); }
+.hero p { color: var(--hero-muted); }
+
+/* Logos del HERO (no afecta al del header) */
+.hero .logo-light, .hero .logo-dark{
+  display:block; width:min(220px,40vw); height:auto; margin:0 auto 1rem;
+}
+
+/* Mostrar el logo correcto por tema */
+html.dark .hero .logo-light, body.dark .hero .logo-light{ display:none; }
+html.dark .hero .logo-dark,  body.dark .hero .logo-dark { display:block; }
+html:not(.dark) .hero .logo-light, body:not(.dark) .hero .logo-light{ display:block; }
+html:not(.dark) .hero .logo-dark,  body:not(.dark) .hero .logo-dark { display:none; }
+
+/* (Opcional) pequeña viñeta para dar profundidad, muy sutil */
+.hero::after{
+  content:""; position:absolute; inset:-15%;
+  background:
+    radial-gradient(40rem 40rem at 50% 40%, rgba(0,0,0,.06), transparent 60%);
+  z-index:0; pointer-events:none;
+  mix-blend-mode: multiply;
+}
+html.dark .hero::after{ background:
+  radial-gradient(40rem 40rem at 50% 40%, rgba(255,255,255,.05), transparent 60%);
+  mix-blend-mode: screen;
+}
 
 /* En modo oscuro ocultamos el logo claro y mostramos el invertido */
 body.dark-theme .logo-light { display: none; }
