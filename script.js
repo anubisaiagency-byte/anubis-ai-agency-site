@@ -93,12 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
   let dots = [];
   // Config (ajusta a tu gusto)
-  const AREA_PER_DOT = 12000; // px² por partícula (↓ = más partículas)
-  const SPEED = 0.22;         // velocidad base
-  const R_MIN = 1.0, R_MAX = 2.6;
-  const LINK_DIST = 120;      // distancia para líneas (px)
-  const MOUSE_RADIUS = 140;   // radio de repulsión
-  const PARALLAX = 0.02;      // leve seguimiento del ratón
+  const AREA_PER_DOT = 18000; // ↑ área por partícula => menos cantidad
+  const SPEED = 0.10;         // ↓ velocidad
+  const R_MIN = 1.0, R_MAX = 2.2;
+  const LINK_DIST = 90;       // ↓ distancia para líneas
+  const MOUSE_RADIUS = 110;   // ↓ radio de repulsión
+  const PARALLAX = 0.008;     // ↓ parallax
 
   const mouse = { x: -9999, y: -9999, inside: false };
 
@@ -135,26 +135,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function step(d){
-    // leve parallax hacia el ratón
+     // parallax y repulsión suaves
     if (mouse.inside){
       d.x += (mouse.x - d.x) * PARALLAX * 0.002;
       d.y += (mouse.y - d.y) * PARALLAX * 0.002;
-      // repulsión
+  
       const dx = d.x - mouse.x, dy = d.y - mouse.y;
       const dist2 = dx*dx + dy*dy, rad2 = (MOUSE_RADIUS*dpr)*(MOUSE_RADIUS*dpr);
       if (dist2 < rad2){
-        const f = (1 - dist2/rad2);
-        d.vx += (dx/Math.sqrt(dist2 || 1)) * f * 0.12;
-        d.vy += (dy/Math.sqrt(dist2 || 1)) * f * 0.12;
+        const m = Math.sqrt(dist2) || 1;
+        const f = (1 - dist2/rad2) * 0.08;  // fuerza más baja
+        d.vx += (dx/m) * f;
+        d.vy += (dy/m) * f;
       }
     }
+  
+    // movimiento base
     d.x += d.vx; d.y += d.vy;
-    // rebote suave en bordes
+  
+    // fricción para evitar “caos” y estabilizar
+    d.vx *= 0.985;
+    d.vy *= 0.985;
+  
+    // límite de velocidad máxima
+    const max = 0.35 * dpr;
+    if (d.vx >  max) d.vx =  max; if (d.vx < -max) d.vx = -max;
+    if (d.vy >  max) d.vy =  max; if (d.vy < -max) d.vy = -max;
+  
+    // rebote suave
     if (d.x < -20 || d.x > w+20) d.vx *= -1;
     if (d.y < -20 || d.y > h+20) d.vy *= -1;
-    // twinkle
-    d.tw += 0.02;
-  }
+  
+    // twinkle más sutil
+    d.tw += 0.012;
+    }
 
   function draw(){
     ctx.clearRect(0,0,w,h);
