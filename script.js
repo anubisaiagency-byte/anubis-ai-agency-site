@@ -224,5 +224,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
   init();
 });
+// ----- QUIÉNES SOMOS – Carrusel de tarjetas -----
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.querySelector('.about-slider');
+  if (!slider) return;
+
+  const viewport = slider.querySelector('.about-viewport');
+  const track    = slider.querySelector('.about-track');
+  const slides   = Array.from(track.children);
+  const btnPrev  = slider.querySelector('.about-nav.prev');
+  const btnNext  = slider.querySelector('.about-nav.next');
+  const dotsWrap = slider.querySelector('.about-dots');
+
+  let index = 0;
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+
+  // Crear puntos de paginación
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', `Ir a la tarjeta ${i+1}`);
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function updateDots(){
+    dotsWrap.querySelectorAll('button').forEach((b, i) => {
+      b.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      b.tabIndex = i === index ? 0 : -1;
+    });
+  }
+
+  function autoHeight(){
+    // Ajusta la altura del viewport a la tarjeta actual para evitar saltos
+    const h = slides[index].offsetHeight;
+    viewport.style.height = h + 'px';
+  }
+
+  function goTo(i){
+    index = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    updateDots();
+    autoHeight();
+  }
+
+  // Navegación con botones
+  btnPrev.addEventListener('click', () => goTo(index - 1));
+  btnNext.addEventListener('click', () => goTo(index + 1));
+
+  // Navegación con teclado
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  goTo(index - 1);
+    if (e.key === 'ArrowRight') goTo(index + 1);
+  });
+  // Permite enfocar el slider para teclas
+  slider.tabIndex = 0;
+
+  // Gestos (drag / swipe)
+  function pointerDown(e){
+    isDragging = true;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    track.style.transition = 'none';
+  }
+  function pointerMove(e){
+    if (!isDragging) return;
+    const x = (e.touches ? e.touches[0].clientX : e.clientX);
+    const dx = x - startX;
+    const percent = dx / viewport.clientWidth * 100;
+    track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
+  }
+  function pointerUp(e){
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = '';
+    const x = (e.changedTouches ? e.changedTouches[0].clientX : e.clientX);
+    const dx = x - startX;
+    if (Math.abs(dx) > viewport.clientWidth * 0.15){
+      if (dx < 0) goTo(index + 1);
+      else        goTo(index - 1);
+    } else {
+      goTo(index); // vuelve a su sitio
+    }
+  }
+
+  track.addEventListener('mousedown', pointerDown);
+  track.addEventListener('mousemove', pointerMove);
+  window.addEventListener('mouseup', pointerUp);
+  track.addEventListener('touchstart', pointerDown, {passive:true});
+  track.addEventListener('touchmove',  pointerMove,  {passive:true});
+  track.addEventListener('touchend',   pointerUp);
+
+  // Recalcular al redimensionar
+  const ro = new ResizeObserver(() => autoHeight());
+  ro.observe(viewport);
+  window.addEventListener('resize', autoHeight, {passive:true});
+
+  // Init
+  goTo(0);
+});
 
 
