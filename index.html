@@ -44,17 +44,68 @@
   </div>
 </section>
 <hr>
-<!-- QUIÉNES SOMOS -->
-<section id="quienes">
+<section id="quienes" class="about">
   <h2>Quiénes somos</h2>
-  <p class="section-text">
-    Anubis AI Agency nace en Málaga, España, como una agencia dedicada a la automatización de procesos, desarrollo de agentes de inteligencia artificial y marketing digital.<br><br>
-    Nuestro propósito es ayudar a pequeñas, medianas y grandes empresas a optimizar su tiempo, reducir errores y maximizar sus beneficios a través de soluciones basadas en inteligencia artificial.<br><br>
-    Nuestra misión es democratizar el acceso a soluciones de IA adaptadas a cada cliente, ofreciendo un servicio cercano, profesional y enfocado en resultados tangibles.<br><br>
-    Nuestra visión es convertirnos en un referente en soluciones de automatización e inteligencia artificial en el mercado hispanohablante, acompañando a las empresas en su transformación digital.<br><br>
-    Valores fundamentales: Innovación, Transparencia, Escalabilidad y Atención Personalizada.
-  </p>
+
+  <div class="about-slider" role="region" aria-roledescription="carrusel" aria-label="Quiénes somos – tarjetas" aria-live="polite">
+    <button class="about-nav prev" aria-label="Anterior">‹</button>
+
+    <div class="about-viewport">
+      <div class="about-track">
+
+        <!-- Tarjeta 1: texto EXACTO de tu web -->
+        <article class="about-card">
+          <h3 class="sr-only">Quiénes somos – Anubis A.I. Agency</h3>
+          <div class="about-body">
+            <p>
+              Anubis AI Agency nace en Málaga, España, como una agencia dedicada a la automatización de procesos, desarrollo de agentes de inteligencia artificial y marketing digital.
+            </p>
+            <p>
+              Nuestro propósito es ayudar a pequeñas, medianas y grandes empresas a optimizar su tiempo, reducir errores y maximizar sus beneficios a través de soluciones basadas en inteligencia artificial.
+            </p>
+            <p>
+              Nuestra misión es democratizar el acceso a soluciones de IA adaptadas a cada cliente, ofreciendo un servicio cercano, profesional y enfocado en resultados tangibles.
+            </p>
+            <p>
+              Nuestra visión es convertirnos en un referente en soluciones de automatización e inteligencia artificial en el mercado hispanohablante, acompañando a las empresas en su transformación digital.
+            </p>
+            <p>
+              Valores fundamentales: Innovación, Transparencia, Escalabilidad y Atención Personalizada.
+            </p>
+          </div>
+        </article>
+
+        <!-- Tarjeta 2: Equipo fundador (Hugo & Aissa) -->
+        <article class="about-card founders">
+          <div class="founder-photos" aria-hidden="true">
+            <img class="avatar" src="assets/hugo.jpg"  alt="Hugo Salas">
+            <img class="avatar" src="assets/aissa.jpg" alt="Aissa Omar">
+          </div>
+          <h3>Equipo fundador</h3>
+          <p>
+            <strong>Hugo Salas</strong> y <strong>Aissa Omar</strong> son cofundadores de Anubis A.I. Agency. Ambos cursan Ingeniería Bioinformática en la Universidad de Málaga y trabajan de forma conjunta a lo largo de todo el ciclo de vida de cada solución: investigación, diseño, desarrollo de agentes, integración con sistemas (CRM/ERP), analítica, soporte y mejora continua.
+          </p>
+          <p>
+            Su enfoque une rigor técnico y visión de negocio para entregar implementaciones de IA seguras, medibles y escalables, orientadas a resultados tangibles para pymes y grandes cuentas.
+          </p>
+        </article>
+
+        <!-- Tarjeta 3: Nuestra historia -->
+        <article class="about-card history">
+          <h3>Nuestra historia</h3>
+          <p>
+            Nacimos en Málaga con una idea clara: acercar la inteligencia artificial aplicada a cualquier empresa que quiera operar con más precisión, menos fricción y mejores resultados. Empezamos ayudando a negocios locales a automatizar procesos clave y hoy diseñamos agentes de IA que se integran con herramientas críticas, acompañando a cada cliente durante su transformación digital.
+          </p>
+        </article>
+
+      </div>
+    </div>
+
+    <button class="about-nav next" aria-label="Siguiente">›</button>
+    <div class="about-dots" role="tablist" aria-label="Paginación de tarjetas"></div>
+  </div>
 </section>
+
 <hr>
 <!-- SERVICIOS -->
 <section id="servicios">
