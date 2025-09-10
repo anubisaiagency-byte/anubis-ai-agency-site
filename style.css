@@ -365,6 +365,45 @@ body.dark-theme .about-dots button{ background:rgba(255,255,255,.28); }
 .about-card.founders h3 {
   margin-top: .25rem;
 }
+/* Layout fundador con foto a la derecha */
+.founder-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.founder-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.founder-photo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.avatar-large {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--background);
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+}
+
+@media (max-width: 768px) {
+  .founder-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .founder-photo {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
 
 /* Limitar ancho para lectura cómoda en todas las tarjetas */
 .about-card p {
