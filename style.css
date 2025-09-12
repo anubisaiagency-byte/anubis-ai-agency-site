@@ -409,3 +409,18 @@ body.dark-theme .about-dots button{ background:rgba(255,255,255,.28); }
 .about-card p {
   max-width: 68ch;
 }
+/* Calendly CTA (texto-enlace elegante) */
+.calendly-cta{
+  margin-top: .5rem;
+  font-size: 1.05rem;
+}
+
+.link-calendly{
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-calendly:hover{
+  opacity: .85;
+}
