@@ -509,4 +509,4 @@ body.dark-theme .metric-value{
   border-radius: 50%;
   overflow: hidden;
 }
-.metric-icon img{ max-width: 62%; height:auto; display:block; }
+.metric-icon img{ max-width: 85%; height:auto; display:block; }
