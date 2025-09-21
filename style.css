@@ -424,3 +424,79 @@ body.dark-theme .about-dots button{ background:rgba(255,255,255,.28); }
 .link-calendly:hover{
   opacity: .85;
 }
+/* =========================
+   MÉTRICAS / IMPACTO
+   ========================= */
+.metrics { padding: clamp(2.5rem, 6vw, 5rem) 0; }
+.metrics-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+.metric-card{
+  position: relative;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: clamp(1rem, 2.2vw, 2rem);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.metric-main{
+  margin: 0 auto clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.metric-icon{
+  width: 56px; height: 56px;
+  margin: 0 auto .5rem;
+  display:grid;place-items:center;
+  background: rgba(0, 102, 255, .1);
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  font-size: 1.25rem;
+}
+
+.metric-value{
+  font-size: clamp(2.2rem, 6.5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: #3B82F6;                 /* azul vivo por defecto */
+  text-shadow:
+    0 0 6px rgba(59,130,246,.65),
+    0 0 18px rgba(59,130,246,.35);
+}
+
+body.dark-theme .metric-value{
+  color: #6DA8FF;                  /* ajusta en oscuro */
+  text-shadow:
+    0 0 8px rgba(109,168,255,.75),
+    0 0 22px rgba(109,168,255,.45);
+}
+
+.metric-desc{
+  color: var(--secondary);
+  max-width: 72ch;
+  margin: .75rem auto 0;
+  line-height: 1.65;
+}
+
+/* Grid inferior */
+.metric-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(.9rem, 2vw, 1.25rem);
+}
+.metric-grid .metric-card .metric-value{
+  font-size: clamp(1.6rem, 4.8vw, 2.4rem);
+}
+
+@media (max-width: 900px){
+  .metric-grid{ grid-template-columns: 1fr; }
+}
+
+/* Sutil borde neón en tarjetas al pasar el ratón */
+.metric-card:hover{
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.18),
+    0 0 0 1px rgba(59,130,246,.18),
+    0 0 24px rgba(59,130,246,.12) inset;
+  transition: box-shadow .25s ease;
+}
