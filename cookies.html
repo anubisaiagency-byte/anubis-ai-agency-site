@@ -7,40 +7,69 @@
   <meta name="description" content="Política de cookies de Anubis A.I. Agency" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .legal-wrap{max-width:980px;margin:0 auto;padding:clamp(1rem,2.5vw,2rem);}
-    .legal-title{margin:1rem 0 .5rem}
-    .legal-meta{color:var(--secondary);font-size:.95rem;margin-bottom:1.5rem}
-    .legal h2{margin-top:2rem}
-    .legal p, .legal li{line-height:1.75;color:var(--secondary)}
-    .cookie-table{width:100%;border-collapse:collapse;margin:1rem 0}
-    .cookie-table th,.cookie-table td{border:1px solid var(--border-color);padding:.65rem}
-    .legal-footer{margin-top:2.5rem;font-size:.95rem}
+    .legal-hero{
+      position:relative; padding:64px 20px;
+      background: radial-gradient(1200px 600px at 10% -20%, rgba(0,119,255,.18), transparent),
+                  radial-gradient(900px 500px at 90% 0%, rgba(255,215,0,.18), transparent),
+                  linear-gradient(180deg, var(--background), var(--accent));
+      border-bottom:1px solid var(--border-color);
+    }
+    .legal-hero .wrap{max-width:1080px;margin:0 auto}
+    .crumbs{color:var(--secondary);font-size:.95rem;margin-bottom:.35rem}
+    .crumbs a{color:inherit;text-decoration:underline dotted}
+    .legal-title{margin:.2rem 0 .35rem}
+    .legal-sub{color:var(--secondary)}
+    .legal-wrap{max-width:980px;margin:0 auto;padding:clamp(1rem,2.5vw,2rem)}
+    .card{background:var(--background);border:1px solid var(--border-color);border-radius:16px;padding:clamp(1rem,2vw,1.5rem);box-shadow:0 10px 30px rgba(0,0,0,.06);margin:1rem 0}
+    .cookie-table{width:100%;border-collapse:collapse}
+    .cookie-table th,.cookie-table td{border:1px solid var(--border-color);padding:.65rem;vertical-align:top}
+    .cookie-table th{font-weight:600}
   </style>
 </head>
 <body>
-<header></header>
+
+<header>
+  <a href="#inicio" aria-label="Volver al inicio">
+    <img src="../logo.png" alt="Anubis A.I." class="logo-light">
+    <img src="assets/logo-invertido.png" alt="Anubis A.I." class="logo-dark">
+  </a>
+  <nav>
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#sectores">Sectores</a>
+    <a href="index.html#faq">Preguntas frecuentes</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+</header>
+
+<section class="legal-hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Inicio</a> / <strong>Cookies</strong></div>
+    <h1 class="legal-title">Política de Cookies</h1>
+    <p class="legal-sub">Última actualización: <time datetime="2025-09-21">21/09/2025</time></p>
+  </div>
+</section>
 
 <main class="legal-wrap legal">
-  <h1 class="legal-title">Política de Cookies</h1>
-  <div class="legal-meta">Última actualización: <time datetime="2025-09-21">21/09/2025</time></div>
-
-  <section>
+  <section class="card">
     <h2>1. ¿Qué son las cookies?</h2>
-    <p>Las cookies son pequeños archivos que se almacenan en el navegador del usuario para recordar información y mejorar la experiencia de navegación.</p>
+    <p>Las cookies son pequeños archivos que se almacenan en el navegador para recordar información y mejorar la experiencia de navegación.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>2. Tipos de cookies que utilizamos</h2>
     <ul>
       <li><strong>Técnicas</strong>: necesarias para el funcionamiento del sitio.</li>
-      <li><strong>Preferencias</strong>: guardan la configuración del usuario, como idioma o tema.</li>
-      <li><strong>Analíticas</strong>: nos permiten medir el uso de la web y mejorar nuestros servicios.</li>
+      <li><strong>Preferencias</strong>: guardan configuración como idioma o tema.</li>
+      <li><strong>Analíticas</strong>: miden el uso de la web para mejorar servicios.</li>
     </ul>
   </section>
 
-  <section>
+  <section class="card">
     <h2>3. Cookies utilizadas</h2>
-    <table class="cookie-table">
+    <table class="cookie-table" aria-describedby="tabla">
       <thead>
         <tr>
           <th>Cookie</th>
@@ -53,39 +82,68 @@
         <tr>
           <td>crisp-client/session</td>
           <td>Crisp</td>
-          <td>Chat en línea con clientes</td>
+          <td>Habilitar el chat de soporte en el sitio.</td>
           <td>6 meses</td>
         </tr>
         <tr>
           <td>calendly_session</td>
           <td>Calendly</td>
-          <td>Gestión de reservas</td>
+          <td>Recordar preferencias del widget de reservas.</td>
           <td>14 días</td>
         </tr>
+        <!-- Añade aquí otras cookies reales si las usas (Analytics, etc.). -->
       </tbody>
     </table>
   </section>
 
-  <section>
+  <section class="card">
     <h2>4. Cómo gestionar las cookies</h2>
-    <p>El usuario puede aceptar, bloquear o eliminar las cookies desde su navegador. También puede configurar el banner inicial para aceptar o rechazar cookies no esenciales.</p>
+    <p>Puedes aceptar, rechazar o revocar cookies no esenciales desde el banner inicial (si está habilitado) y borrar cookies desde la configuración de tu navegador.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>5. Actualizaciones</h2>
-    <p>Podremos modificar esta política de cookies en función de cambios técnicos o legales. Te recomendamos revisarla periódicamente.</p>
+    <p>Podemos modificar esta política para adaptarla a cambios técnicos o legales. Revisa periódicamente esta página.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>6. Contacto</h2>
-    <p>Para dudas sobre esta política, escríbenos a <a href="mailto:anubis.ai.agency@gmail.com">anubis.ai.agency.com</a>.</p>
+    <p>Para dudas sobre esta política, escríbenos a <a href="mailto:anubis.ai.agency.com">anubis.ai.agency.com</a>.</p>
   </section>
-
-  <div class="legal-footer">
-    <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a>
-  </div>
 </main>
 
-<footer></footer>
+<footer>
+  <div>
+    <h3>Anubis A.I.</h3>
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#quienes">Quiénes somos</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#beneficios">Beneficios</a>
+    <a href="index.html#sectores">Sectores</a>
+    <a href="index.html#proceso">Proceso</a>
+    <a href="index.html#casos">Casos de éxito</a>
+    <a href="index.html#faq">Preguntas frecuentes</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  <div>
+    <h3>Legal</h3>
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="cookies.html">Cookies</a>
+  </div>
+  <div>
+    <h3>Social</h3>
+    <a href="https://wa.me/34694249575" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:anubis.ai.agency.com">Email</a>
+    <a href="https://instagram.com/anubisaiagency" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p style="flex-basis:100%; margin-top:1rem;">
+    <small>Ubicación: Málaga, España (sin oficina física).
+    Atención en español e inglés. Escribe a <a href="mailto:anubis.ai.agency.com">anubis.ai.agency.com</a> o solicita una videollamada.</small>
+  </p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
