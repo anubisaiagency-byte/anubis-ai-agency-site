@@ -326,5 +326,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init
   goTo(0);
 });
+// ====== MÉTRICAS: contador animado ======
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('#metricas .metric-value');
+  if (!counters.length) return;
+
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+  function animate(el){
+    const target = parseFloat(el.dataset.target || '0');
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400; // ms
+
+    let start = null;
+
+    function step(ts){
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      const eased = easeOutCubic(p);
+      const value = target * eased;
+      el.textContent = value.toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        animate(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  counters.forEach(c => io.observe(c));
+});
 
 
