@@ -7,66 +7,127 @@
   <meta name="description" content="Aviso legal de Anubis A.I. Agency" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .legal-wrap{max-width:980px;margin:0 auto;padding:clamp(1rem,2.5vw,2rem);}
-    .legal-title{margin:1rem 0 .5rem}
-    .legal-meta{color:var(--secondary);font-size:.95rem;margin-bottom:1.5rem}
-    .legal h2{margin-top:2rem}
+    .legal-hero{
+      position:relative; padding:64px 20px;
+      background: radial-gradient(1200px 600px at 10% -20%, rgba(0,119,255,.18), transparent),
+                  radial-gradient(900px 500px at 90% 0%, rgba(255,215,0,.18), transparent),
+                  linear-gradient(180deg, var(--background), var(--accent));
+      border-bottom:1px solid var(--border-color);
+    }
+    .legal-hero .wrap{max-width:1080px;margin:0 auto}
+    .crumbs{color:var(--secondary);font-size:.95rem;margin-bottom:.35rem}
+    .crumbs a{color:inherit;text-decoration:underline dotted}
+    .legal-title{margin:.2rem 0 .35rem}
+    .legal-sub{color:var(--secondary)}
+    .legal-wrap{max-width:980px;margin:0 auto;padding:clamp(1rem,2.5vw,2rem)}
+    .card{background:var(--background);border:1px solid var(--border-color);border-radius:16px;padding:clamp(1rem,2vw,1.5rem);box-shadow:0 10px 30px rgba(0,0,0,.06);margin:1rem 0}
     .legal p, .legal li{line-height:1.75;color:var(--secondary)}
-    .legal-footer{margin-top:2.5rem;font-size:.95rem}
   </style>
 </head>
 <body>
-<header></header>
+
+<header>
+  <a href="#inicio" aria-label="Volver al inicio">
+    <img src="../logo.png" alt="Anubis A.I." class="logo-light">
+    <img src="assets/logo-invertido.png" alt="Anubis A.I." class="logo-dark">
+  </a>
+  <nav>
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#sectores">Sectores</a>
+    <a href="index.html#faq">Preguntas frecuentes</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+</header>
+
+<section class="legal-hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Inicio</a> / <strong>Aviso legal</strong></div>
+    <h1 class="legal-title">Aviso legal</h1>
+    <p class="legal-sub">Última actualización: <time datetime="2025-09-21">21/09/2025</time></p>
+  </div>
+</section>
 
 <main class="legal-wrap legal">
-  <h1 class="legal-title">Aviso legal</h1>
-  <div class="legal-meta">Última actualización: <time datetime="2025-09-21">21/09/2025</time></div>
-
-  <section>
+  <section class="card">
     <h2>1. Identificación</h2>
-    <p>Anubis A.I. Agency, con domicilio en Mijas Costa, Málaga. Email de contacto: <a href="mailto:anubis.ai.agency.com">anubis.ai.agency.com</a>. Sitio web: <a href="https://anubisaiagency.com">anubisaiagency.com</a>.</p>
+    <p>Anubis A.I. Agency. Domicilio: Mijas Costa, Málaga. Email: <a href="mailto:anubis.ai.agency.com">anubis.ai.agency.com</a>. Sitio web: <a href="https://anubisaiagency.com">anubisaiagency.com</a>.</p>
   </section>
 
-  <section>
-    <h2>2. Objeto del sitio web</h2>
-    <p>Este sitio web ofrece información sobre los servicios de automatización, agentes de inteligencia artificial y marketing digital de Anubis A.I. Agency.</p>
+  <section class="card">
+    <h2>2. Objeto del sitio</h2>
+    <p>Ofrecer información sobre servicios de automatización, agentes de inteligencia artificial y marketing digital.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>3. Condiciones de uso</h2>
-    <p>El usuario se compromete a hacer un uso adecuado y lícito de la web. No está permitido introducir virus, dañar sistemas, ni utilizar la web para actividades ilegales.</p>
+    <ul>
+      <li>Utilizar el sitio de forma lícita y respetuosa.</li>
+      <li>No introducir malware ni dañar sistemas de terceros.</li>
+      <li>La información de terceros enlazados es responsabilidad de sus titulares.</li>
+    </ul>
   </section>
 
-  <section>
+  <section class="card">
     <h2>4. Propiedad intelectual</h2>
-    <p>Todos los contenidos, logotipos y diseños de este sitio son propiedad de Anubis A.I. Agency. No se permite su uso sin autorización.</p>
+    <p>Contenidos, diseños y logotipos son titularidad de Anubis A.I. Agency. Cualquier uso no autorizado está prohibido.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>5. Responsabilidad</h2>
-    <p>No nos hacemos responsables de la exactitud de la información de terceros enlazados desde este sitio, ni de daños derivados de un mal uso de la web.</p>
+    <p>No garantizamos la disponibilidad continua del servicio ni la ausencia de errores. El uso del sitio se realiza por cuenta y riesgo del usuario.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>6. Protección de datos</h2>
-    <p>La información sobre tratamiento de datos se encuentra en la <a href="privacidad.html">Política de Privacidad</a>.</p>
+    <p>Consulta la <a href="privacidad.html">Política de Privacidad</a>.</p>
   </section>
 
-  <section>
+  <section class="card">
     <h2>7. Cookies</h2>
     <p>Consulta la <a href="cookies.html">Política de Cookies</a>.</p>
   </section>
 
-  <section>
-    <h2>8. Ley aplicable</h2>
-    <p>Se aplicará la legislación española y, en caso de conflicto, se resolverá en los juzgados de Málaga.</p>
+  <section class="card">
+    <h2>8. Ley aplicable y jurisdicción</h2>
+    <p>Se aplica la legislación española. Para cualquier disputa, serán competentes los Juzgados y Tribunales de Málaga.</p>
   </section>
-
-  <div class="legal-footer">
-    <a href="privacidad.html">Privacidad</a> · <a href="cookies.html">Cookies</a>
-  </div>
 </main>
 
-<footer></footer>
+<footer>
+  <div>
+    <h3>Anubis A.I.</h3>
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#quienes">Quiénes somos</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#beneficios">Beneficios</a>
+    <a href="index.html#sectores">Sectores</a>
+    <a href="index.html#proceso">Proceso</a>
+    <a href="index.html#casos">Casos de éxito</a>
+    <a href="index.html#faq">Preguntas frecuentes</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  <div>
+    <h3>Legal</h3>
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="cookies.html">Cookies</a>
+  </div>
+  <div>
+    <h3>Social</h3>
+    <a href="https://wa.me/34694249575" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:anubis.ai.agency.com">Email</a>
+    <a href="https://instagram.com/anubisaiagency" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p style="flex-basis:100%; margin-top:1rem;">
+    <small>Ubicación: Málaga, España (sin oficina física).
+    Atención en español e inglés. Escribe a <a href="mailto:anubis.ai.agency.com">anubis.ai.agency.com</a> o solicita una videollamada.</small>
+  </p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
